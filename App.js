@@ -1,17 +1,34 @@
 import React from 'react'
 import { Text, View, StyleSheet} from 'react-native'
-// import Screen1 from './src/Components/Screens/Screen1'
-import ImageCarousel from './src/Components/ImageCarousel'
-import Login from './src/Components/Screens/Login'
+import Slider from './src/Components/Slider'
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Login from './src/Components/pages/Login';
+import OTPPage from './src/Components/pages/OTPPage';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    // <Screen1/>
-    // <View><Text>Hy</Text></View>
-    <View style={styles.container}>
-    <ImageCarousel/>
-    </View>
-    // <Login/>
+    <NavigationContainer>
+       <Stack.Navigator initialRouteName={'slider'}>
+              <Stack.Screen
+               options={{headerShown: false}}
+                name="slider"
+                component={Slider}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="login"
+                component={Login}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="otp"
+                component={OTPPage}
+                />
+                </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
