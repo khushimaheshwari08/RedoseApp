@@ -5,6 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './src/Components/pages/Login';
 import OTPPage from './src/Components/pages/OTPPage';
+import SignUp from './src/Components/pages/SignUp';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,11 @@ const App = () => {
                options={{headerShown: false}}
                 name="otp"
                 component={OTPPage}
+                />
+                 <Stack.Screen
+               options={{headerShown: false}}
+                name="signUp"
+                component={SignUp}
                 />
                 </Stack.Navigator>
     </NavigationContainer>

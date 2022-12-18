@@ -4,8 +4,8 @@ import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, Touc
 
 const Login = () => {
   const navigation = useNavigation();
-const [phoneNo, setPhoneNo] = useState('')
-const [loading, setLoading] = useState(false);
+  const [phoneNo, setPhoneNo] = useState('')
+  const [loading, setLoading] = useState(false);
 
   return (
   <View style={styles.container}>
@@ -35,11 +35,8 @@ const [loading, setLoading] = useState(false);
           <TouchableOpacity style={styles.SectionStyle} disabled={ phoneNo.length === 10  ? false: true} onPress={() => navigation.navigate('otp', {
             phoneNo: phoneNo})} >
               <Text style={[styles.otp,{ backgroundColor: phoneNo.length === 10  ? '#ff2746': '#f7656c'}]}>
-                   {loading === true ? (
-                  <ActivityIndicator size="small" color="#fff" />
-                ) : (
-                  'Get OTP'
-                )}
+                  
+                  Get OTP
                 </Text>
             </TouchableOpacity>
     </View>

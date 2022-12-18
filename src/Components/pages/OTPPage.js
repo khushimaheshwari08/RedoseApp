@@ -1,10 +1,11 @@
 import React, { useState ,useRef,useEffect} from 'react'
 import { Text, View,StyleSheet, TouchableOpacity, TextInput } from 'react-native'
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
 
 const OTPPage = () => {
+  const navigation = useNavigation();
   const route = useRoute();
   const firstInput = useRef();
   const secondInput = useRef();
@@ -14,22 +15,18 @@ const OTPPage = () => {
 
   const OtpData = ()=>{
     setMessage(true)
-    // showMessage({
-    //   message: "Success",
-    //   description: "OTP sent successfully",
-    //   type: "success",
-    //   backgroundColor: "white", 
-    //   color: "black",   
-    //   duration:	3000
-    // });
+    navigation.navigate('signUp',{
+      phoneNo:route.params.phoneNo
+    });
   }
+
   useEffect(() => {
     showMessage({
       message: "Success",
       description: "OTP sent successfully",
       type: "success",
-      backgroundColor: "white", 
-      color: "black",   
+      // backgroundColor: "white", 
+      color: "black",
       duration:	3000
     });
   }, [])
