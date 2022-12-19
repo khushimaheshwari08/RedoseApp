@@ -1,5 +1,5 @@
 import React, { useState ,useRef,useEffect} from 'react'
-import { Text, View,StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { Text, View,StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
@@ -15,25 +15,35 @@ const OTPPage = () => {
 
   const OtpData = ()=>{
     setMessage(true)
-    navigation.navigate('signUp',{
-      phoneNo:route.params.phoneNo
-    });
+    setTimeout(()=>{
+      navigation.navigate('signUp',{
+        phoneNo:route.params.phoneNo
+      });
+    }, 1000)
+   
   }
-
   useEffect(() => {
     showMessage({
       message: "Success",
       description: "OTP sent successfully",
       type: "success",
-      // backgroundColor: "white", 
-      color: "black",
-      duration:	3000
+      style: styles.flashMessage,
+      titleStyle: styles.flashTitle,
+      textStyle: styles.flashDes,
+      duration:	2000
     });
   }, [])
   return (
   <View style={styles.container}>
+    <TouchableOpacity onPress={() => navigation.goBack()}>
+      <Image
+              source={require('../../assets/icons/goBack.png')}
+              style={{width: 20, height: 20, marginTop: 10}}
+            />
+            </TouchableOpacity>
     <Text style={styles.verify}>Verify OTP</Text>
      <Text style={[styles.mobileNo,styles.mobileNoText]}>Please enter OTP sent on your mobile number</Text>
+      <FlashMessage position="bottom" /> 
       <Text  style={styles.mobileNo}>{route.params.phoneNo}</Text>
       {message === true ? ( 
         <View style={styles.dotParent}>
@@ -85,7 +95,7 @@ const OTPPage = () => {
       </View>
       
       )}
-        <FlashMessage position="bottom" /> 
+       
            <TouchableOpacity style={styles.SectionStyle} onPress={OtpData} disabled={message ? true:false}>
               <Text style={styles.otp}>
                Verify & Submit
@@ -102,13 +112,14 @@ export default OTPPage
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'white'
+        backgroundColor:'white',
+        padding:15
     },
     verify:{
       color:'#ff2746',
       fontWeight:'bold',
       fontSize:25,
-      marginTop:70,
+      marginTop:35,
       textAlign:'center'
     },
     mobileNoText:{
@@ -163,6 +174,30 @@ const styles = StyleSheet.create({
     dotParent:{
       flexDirection:'row',
       justifyContent:'center',
+    },
+    flashMessage: {
+      borderRadius: 9,
+      // opacity: 0.8,
+      shadowColor: 'gray',
+      shadowOffset: {width: -2, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+      elevation:1,
+      margin: 12,
+      backgroundColor:'white',
+      marginBottom:40,
+      borderLeftWidth:5,
+      borderLeftColor:'green',
+      height:65
+    },
+    flashTitle: {
+      fontWeight: 'bold',
+      fontSize: 13,
+      color:'black'
+    },
+    flashDes: {
+      fontSize: 10,
+      color:'gray'
     }
 
   })

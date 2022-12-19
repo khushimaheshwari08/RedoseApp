@@ -5,8 +5,6 @@ import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, Touc
 const Login = () => {
   const navigation = useNavigation();
   const [phoneNo, setPhoneNo] = useState('')
-  const [loading, setLoading] = useState(false);
-
   return (
   <View style={styles.container}>
     <Image
