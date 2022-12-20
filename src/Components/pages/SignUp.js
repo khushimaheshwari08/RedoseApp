@@ -1,5 +1,5 @@
 import {useRoute} from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import {
@@ -15,9 +15,10 @@ const SignUp = () => {
   const navigation = useNavigation();
   const [name, setName] = useState('')
   const route = useRoute();
+  const flashMessage = useRef();
 
     useEffect(() => {
-      showMessage({
+      flashMessage.current.showMessage({
         message: "Success",
         description: "OTP verified successfully",
         type: "success",
@@ -37,7 +38,7 @@ const SignUp = () => {
             />
             </TouchableOpacity>
       <Text style={styles.signUp}>Sign Up</Text>
-      <FlashMessage position="bottom" /> 
+      <FlashMessage position="bottom" ref={flashMessage} /> 
       <Text style={styles.textInfo}>
         Enter your information to create your account
       </Text>
@@ -47,15 +48,17 @@ const SignUp = () => {
           placeholder="Name"
           placeholderTextColor="gray"
           autoFocus={true}
-          value={name}
-          onChangeText={name=> setName(name)}
+          value="Dummy"
+          // onChangeText={name=> setName(name)}
         />
       </View>
       <View style={styles.SectionStyle}>
         <Text style={styles.inputStyle}>{route.params.phoneNo}</Text>
       </View>
-      <TouchableOpacity style={styles.SectionStyle}  disabled={name ? false: true} onPress={()=> navigation.navigate('homeScreen',{
-        name:name,
+      <TouchableOpacity style={styles.SectionStyle}  
+      // disabled={name ? false: true}
+       onPress={()=> navigation.navigate('homeScreen',{
+        // name:name,
         phoneNo:route.params.phoneNo
       })}>
         <Text style={styles.otp}>Continue</Text>

@@ -5,7 +5,7 @@ import UserAvatar from 'react-native-user-avatar';
 import Icon from "react-native-vector-icons/MaterialIcons"
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import BillingIcon from 'react-native-vector-icons/FontAwesome';
-import MyBuddiesIcon from 'react-native-vector-icons/Fontisto'
+import MyBuddiesIcon from 'react-native-vector-icons/Fontisto';
 
 const ProfileScreen = () => {
     const route = useRoute();
@@ -15,19 +15,24 @@ const ProfileScreen = () => {
             <View style={styles.parent}>
             <View style={styles.Profile}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Image
+                {/* <Image
                     source={require('../../assets/icons/goBack.png')}
                     style={{width: 20, height: 20,}}
-                />
+                /> */}
+                <Icon name="arrow-back" size={25} style={styles.iconColor}/>
                 </TouchableOpacity>
               <Text style={styles.heading}>Profile</Text>
               </View>
               <View style={styles.subParent}>
                 <View style={styles.textParent}>
-              <Text style={styles.userName}>{route.params.name}</Text>
+              <Text style={styles.userName}>Dummy
+                {/* {route.params.name} */}
+                </Text>
               <Text style={styles.phnNo}>+91 {route.params.phoneNo}</Text>
               </View>
-              <UserAvatar style={styles.userAvatar} size={35} name={route.params.name} />
+              <UserAvatar style={styles.userAvatar} size={35}
+              //  name={route.params.name}
+                />
               </View>
               </View>
               <ScrollView style={{marginTop:5}}>
@@ -54,6 +59,7 @@ const ProfileScreen = () => {
                 <Text style={styles.phnNo}>Free Credits Received so far</Text>
                 </View>
                 </View>
+                <TouchableOpacity onPress={()=> navigation.navigate('manageLocation')}>
                  <View style={[styles.iconParent,styles.forMargin]}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><Icon name="location-pin" size={25} style={styles.iconColor}/></View>  
@@ -61,6 +67,8 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.navigate('orderHistory')}>
                 <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><Icon name="shopping-cart" size={23}  style={styles.iconColor}/></View>  
@@ -68,6 +76,7 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
+                </TouchableOpacity>
                 <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><BillingIcon name="file-text" size={20} style={styles.iconColor}/></View>  
@@ -115,7 +124,9 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#f2f2f2',
-      padding:12
+      paddingTop:12,
+      paddingRight:12,
+      paddingLeft:12,
     }, 
    
     parent:{

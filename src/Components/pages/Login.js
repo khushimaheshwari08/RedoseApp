@@ -33,7 +33,6 @@ const Login = () => {
           <TouchableOpacity style={styles.SectionStyle} disabled={ phoneNo.length === 10  ? false: true} onPress={() => navigation.navigate('otp', {
             phoneNo: phoneNo})} >
               <Text style={[styles.otp,{ backgroundColor: phoneNo.length === 10  ? '#ff2746': '#f7656c'}]}>
-                  
                   Get OTP
                 </Text>
             </TouchableOpacity>
