@@ -20,10 +20,11 @@ const HomeScreen = () => {
         <TouchableOpacity onPress={()=> navigation.navigate('qrIconScreen')} >
       <Icon name="qr-code-2" size={30} style={styles.Icon}/>
       </TouchableOpacity>
-      <TouchableOpacity onPress={()=> navigation.navigate('profileScreen',{
-        // name:route.params.name,
-        phoneNo:route.params.phoneNo
-      })}>
+      <TouchableOpacity onPress={()=> navigation.navigate('profileScreen',
+      
+        // {name:route.params.name,
+        // phoneNo:route.params.phoneNo}
+      )}>
         <UserAvatar style={styles.userAvatar} size={35} 
         //  name={route.params.name} 
          />

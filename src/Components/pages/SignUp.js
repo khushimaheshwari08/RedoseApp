@@ -48,19 +48,21 @@ const SignUp = () => {
           placeholder="Name"
           placeholderTextColor="gray"
           autoFocus={true}
-          value="Dummy"
-          // onChangeText={name=> setName(name)}
+          value={name}
+          onChangeText={name=> setName(name)}
         />
       </View>
       <View style={styles.SectionStyle}>
-        <Text style={styles.inputStyle}>{route.params.phoneNo}</Text>
+        <Text style={styles.inputStyle}>1234567890
+        {/* {route.params.phoneNo} */}
+        </Text>
       </View>
       <TouchableOpacity style={styles.SectionStyle}  
-      // disabled={name ? false: true}
-       onPress={()=> navigation.navigate('homeScreen',{
-        // name:name,
-        phoneNo:route.params.phoneNo
-      })}>
+      disabled={name ? false: true}
+       onPress={()=> navigation.navigate('homeScreen',
+      //  { name:name,
+      //    phoneNo:route.params.phoneNo}
+        )}>
         <Text style={styles.otp}>Continue</Text>
       </TouchableOpacity>
     </View>

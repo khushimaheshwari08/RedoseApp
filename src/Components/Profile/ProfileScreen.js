@@ -28,7 +28,9 @@ const ProfileScreen = () => {
               <Text style={styles.userName}>Dummy
                 {/* {route.params.name} */}
                 </Text>
-              <Text style={styles.phnNo}>+91 {route.params.phoneNo}</Text>
+              <Text style={styles.phnNo}>+91 1234567890
+                {/* {route.params.phoneNo} */}
+               </Text> 
               </View>
               <UserAvatar style={styles.userAvatar} size={35}
               //  name={route.params.name}

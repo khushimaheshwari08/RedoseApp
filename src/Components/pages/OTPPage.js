@@ -15,11 +15,11 @@ const OTPPage = () => {
 
   const OtpData = ()=>{
     setMessage(true)
-    setTimeout(()=>{
-      navigation.navigate('signUp',{
-        phoneNo:route.params.phoneNo
-      });
-    }, 1000)
+    // setTimeout(()=>{
+      navigation.replace('signUp',
+      // { phoneNo:route.params.phoneNo}
+      );
+    // }, 1000)
    
   }
   useEffect(() => {
@@ -44,7 +44,9 @@ const OTPPage = () => {
     <Text style={styles.verify}>Verify OTP</Text>
      <Text style={[styles.mobileNo,styles.mobileNoText]}>Please enter OTP sent on your mobile number</Text>
       <FlashMessage position="bottom" /> 
-      <Text  style={styles.mobileNo}>{route.params.phoneNo}</Text>
+      <Text  style={styles.mobileNo}>1234567890
+      {/* {route.params.phoneNo} */}
+      </Text>
       {message === true ? ( 
         <View style={styles.dotParent}>
           <View style={styles.dot}></View>
@@ -96,7 +98,8 @@ const OTPPage = () => {
       
       )}
        
-           <TouchableOpacity style={styles.SectionStyle} onPress={OtpData} disabled={message ? true:false}>
+         <TouchableOpacity style={styles.SectionStyle} onPress={OtpData}>      
+           {/* disabled={message ? true:false} */}
               <Text style={styles.otp}>
                Verify & Submit
                </Text>
@@ -199,5 +202,4 @@ const styles = StyleSheet.create({
       fontSize: 10,
       color:'gray'
     }
-
   })
