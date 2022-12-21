@@ -12,14 +12,21 @@ const OTPPage = () => {
   const thirdInput = useRef();
   const fourInput = useRef();
   const [message, setMessage] = useState(false)
+  const [firstInputNum, setFirstInputNum] = useState();
+  const [secondInputNum, setSecondInputNum] = useState();
+  const [thirdInputNum, setThirdInputNum] = useState();
+  const [fourInputNum, setfourInputNum] = useState();
 
   const OtpData = ()=>{
+    let optNum = firstInputNum + secondInputNum + thirdInputNum + fourInputNum;
+    if(optNum.length !== 4){
+      alert('Please Enter OTP');
+      return;
+    }
     setMessage(true)
-    // setTimeout(()=>{
-      navigation.replace('signUp',
+      navigation.replace('signUp')
       // { phoneNo:route.params.phoneNo}
-      );
-    // }, 1000)
+      
    
   }
   useEffect(() => {
@@ -60,6 +67,7 @@ const OTPPage = () => {
         <TextInput style={styles.input}
          autoFocus={true}
         onChangeText={text=>{
+          setFirstInputNum(text);
           text && secondInput.current.focus();
         }}
         ref={firstInput}
@@ -68,6 +76,7 @@ const OTPPage = () => {
         />
          <TextInput style={styles.input}
            onChangeText={text=>{
+            setSecondInputNum(text);
           text ? thirdInput.current.focus()
           : firstInput.current.focus();
             }}
@@ -77,6 +86,7 @@ const OTPPage = () => {
         />
          <TextInput style={styles.input}
           onChangeText={text=>{
+            setThirdInputNum(text)
            text ? fourInput.current.focus()
           : secondInput.current.focus();
     }}
@@ -86,6 +96,7 @@ const OTPPage = () => {
         />
          <TextInput style={styles.input}
           onChangeText={text=>{
+            setfourInputNum(text);
           text ? fourInput.current.focus()
             : secondInput.current.focus();
             !text && thirdInput.current.focus();

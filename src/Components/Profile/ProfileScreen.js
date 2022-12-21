@@ -47,7 +47,7 @@ const ProfileScreen = () => {
                  <Text style={styles.userName}>₹0</Text>
                 <Text style={styles.phnNo}>Available Credits</Text>
                 </View>
-                <TouchableOpacity style={styles.incomeBlockCredit} >
+                <TouchableOpacity style={styles.incomeBlockCredit} onPress={()=> navigation.navigate('addCredit')}>
                     <Text style={styles.addCredit}>Add Credit</Text>
                 </TouchableOpacity>
               </View>
@@ -78,7 +78,8 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
-                </TouchableOpacity>
+                </TouchableOpacity >
+                <TouchableOpacity onPress={()=> navigation.navigate('billingStatement')}>
                 <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><BillingIcon name="file-text" size={20} style={styles.iconColor}/></View>  
@@ -86,6 +87,8 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.navigate('rechargeHistory')}>
                 <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><Icons name="money-check" size={15} style={styles.iconColor}/></View>  
@@ -93,6 +96,8 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.navigate('myBuddies')}>
                 <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><MyBuddiesIcon name="persons" size={20} style={styles.iconColor} /></View>  
@@ -100,6 +105,8 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.navigate('help&FAQ')}>
                 <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><Icons name="hands-helping" size={20} style={styles.iconColor}/></View>  
@@ -107,6 +114,8 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.navigate('myAccount')}>
                 <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><Icon name="person" size={25} style={styles.iconColor} /></View>  
@@ -114,6 +123,7 @@ const ProfileScreen = () => {
                   </View>
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40}  /></Text>  
                 </View>
+                </TouchableOpacity>
                 <Text style={styles.version}>Version-3.7</Text>
                 </ScrollView>
     </View>
@@ -163,7 +173,6 @@ const styles = StyleSheet.create({
     },
     phnNo:{
         color:'gray',
-       
     },
     userAvatar:{
         height:35,
@@ -197,6 +206,9 @@ const styles = StyleSheet.create({
         color:'#ff2746',
         marginTop:2,
       },
+      forMargin:{
+        marginTop:20
+      },
       teaBlock:{
         flexDirection:'row',
         alignItems:'center',
@@ -207,9 +219,6 @@ const styles = StyleSheet.create({
         marginRight:10,
         padding:12,
         marginTop:10
-      },
-      forMargin:{
-        marginTop:20
       },
       iconParent:{
         flexDirection:'row',

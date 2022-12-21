@@ -2,11 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { View ,Text, TouchableOpacity, StyleSheet, Image,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
-import Lottie from 'lottie-react-native';
 
-const OrderHistory = () => {
+const MyBuddies = () => {
   const navigation = useNavigation();
- 
   return (
     <View style={styles.container}>
     <View style={styles.parent}>
@@ -14,18 +12,14 @@ const OrderHistory = () => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" size={25} style={styles.iconColor}/>
           </TouchableOpacity>
-          <Text style={styles.heading}>Order History</Text>
+          <Text style={styles.heading}>My Buddies</Text>
       </View>
     </View>
-    <Lottie style={styles.noResultImg} source={require('../../assets/no_result.json')} autoPlay loop />
-        <Text style={styles.notLocation}>No Records found</Text>
-        <Text style={styles.textTry}>Sorry. We couldn't find anything. You can try another search</Text>
   </View>
   )
 }
 
-export default OrderHistory
-
+export default MyBuddies
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -51,25 +45,5 @@ const styles = StyleSheet.create({
   },
   iconColor:{
       color:'#4a4949',
-    },
-    noResultImg:{
-      height:350,
-      marginLeft:30,
-      marginTop:8
-    },
-    notLocation:{
-      fontSize:23,
-      color: '#ff2746',
-      fontWeight:'bold',
-      textAlign:'center',
-      marginTop:32
-    },
-    textTry:{
-      textAlign:'center',
-      color:'black',
-      marginTop:10,
-      fontStyle:'italic',
-      fontWeight:'500',
-      marginBottom:20
     },
   })

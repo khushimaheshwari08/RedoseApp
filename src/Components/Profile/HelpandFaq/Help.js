@@ -4,9 +4,8 @@ import { View ,Text, TouchableOpacity, StyleSheet, Image,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import Lottie from 'lottie-react-native';
 
-const OrderHistory = () => {
+const Help = () => {
   const navigation = useNavigation();
- 
   return (
     <View style={styles.container}>
     <View style={styles.parent}>
@@ -14,18 +13,17 @@ const OrderHistory = () => {
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" size={25} style={styles.iconColor}/>
           </TouchableOpacity>
-          <Text style={styles.heading}>Order History</Text>
+          <Text style={styles.heading}>Help & FAQs</Text>
       </View>
     </View>
-    <Lottie style={styles.noResultImg} source={require('../../assets/no_result.json')} autoPlay loop />
+    <Lottie style={styles.noResultImg} source={require('../../../assets/no_result.json')} autoPlay loop />
         <Text style={styles.notLocation}>No Records found</Text>
         <Text style={styles.textTry}>Sorry. We couldn't find anything. You can try another search</Text>
   </View>
   )
 }
 
-export default OrderHistory
-
+export default Help
 const styles = StyleSheet.create({
   container: {
     flex: 1,

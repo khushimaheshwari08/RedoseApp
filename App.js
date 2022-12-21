@@ -9,14 +9,16 @@ import SignUp from './src/Components/pages/SignUp';
 import HomeScreen from './src/Components/Home/HomeScreen';
 import ProfileScreen from './src/Components/Profile/ProfileScreen';
 import OrderHistory from './src/Components/Profile/OrderHistory';
-import BillingStatement from './src/Components/Profile/BillingStatement';
-import RechargeHistory from './src/Components/Profile/RechargeHistory';
-import MyBuddies from './src/Components/Profile/MyBuddies';
-import Help from './src/Components/Profile/Help';
-import MyAccount from './src/Components/Profile/MyAccount';
+import BillingStatement from './src/Components/Profile/BillingStatement/BillingStatement';
+import RechargeHistory from './src/Components/Profile/Recharge/RechargeHistory';
+import MyBuddies from './src/Components/Profile/MyBuddies/MyBuddies';
+import Help from './src/Components/Profile/HelpandFaq/Help';
+import MyAccount from './src/Components/Profile/MyAccount/MyAccount';
 import ManageLocation from './src/Components/Profile/Location/ManageLocation';
 import AddNewLocation from './src/Components/Profile/Location/AddNewLocation';
 import QRIcon from './src/Components/Home/QRIcon';
+import AddCredit from './src/Components/Profile/AddCredit/AddCredit';
+import AccountStatement from './src/Components/Profile/BillingStatement/AccountStatement';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +61,11 @@ const App = () => {
                 name="profileScreen"
                 component={ProfileScreen}
                 />
+                 <Stack.Screen
+               options={{headerShown: false}}
+                name="addCredit"
+                component={AddCredit}
+                />
                 <Stack.Screen
                options={{headerShown: false}}
                 name="manageLocation"
@@ -70,7 +77,7 @@ const App = () => {
                 component={AddNewLocation}
                 />
                 <Stack.Screen
-               options={{headerShown: false}}
+                options={{headerShown: false}}
                 name="orderHistory"
                 component={OrderHistory}
                 />
@@ -78,6 +85,11 @@ const App = () => {
                options={{headerShown: false}}
                 name="billingStatement"
                 component={BillingStatement}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="accountStatement"
+                component={AccountStatement}
                 />
                 <Stack.Screen
                options={{headerShown: false}}
