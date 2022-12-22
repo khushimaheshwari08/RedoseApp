@@ -5,6 +5,7 @@ import Icon from "react-native-vector-icons/MaterialIcons"
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Octicons from "react-native-vector-icons/Octicons"
 import BillingIcon from 'react-native-vector-icons/FontAwesome';
+import CommonModal from '../../../Common/Modal/Modal';
 
 const MyAccount = () => {
   const navigation = useNavigation();
@@ -54,6 +55,12 @@ const MyAccount = () => {
                         <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
             </TouchableOpacity>
+            <CommonModal open={modalVisibleDelete} 
+            onClose={() => setModalVisibleDelete(!modalVisibleDelete)} 
+            title="Are you sure you want to delete your account?"
+              onYes={() => setModalVisibleDelete(!modalVisibleDelete)}
+              onNo={() => setModalVisibleDelete(!modalVisibleDelete)}
+            />
             <TouchableOpacity  onPress={() => setModalVisibleDelete(true)}>
                  <View style={[styles.iconParent]}>
                     <View style={styles.iconsubParent}>
@@ -72,68 +79,13 @@ const MyAccount = () => {
                         <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
             </TouchableOpacity>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisibleDelete}
-              // onRequestClose={() => {
-              //   Alert.alert("Modal has been closed.");
-              //   setModalVisible(!modalVisible);
-              // }}
-            >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <TouchableOpacity  onPress={() => setModalVisibleDelete(!modalVisibleDelete)} style={styles.closeArrowParent}><Text style={styles.closeArrow}><Icon name="close" size={40} /></Text></TouchableOpacity> 
-            <Text style={styles.modalTextAlert}>Alert!</Text>
-            <Text style={styles.modalText}>Are you sure you want to delete your account?</Text>
-            <View style={styles.buttonParent}>
-                <TouchableOpacity
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisibleDelete(!modalVisibleDelete)}
-                >
-                  <Text style={styles.textStyle}>Yes</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisibleDelete(!modalVisibleDelete)}
-                >
-                  <Text style={styles.textStyle}>No</Text>
-                </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalVisibleLogout}
-              // onRequestClose={() => {
-              //   Alert.alert("Modal has been closed.");
-              //   setModalVisible(!modalVisible);
-              // }}
-            >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-          <TouchableOpacity  onPress={() => setModalVisibleLogout(!modalVisibleLogout)} style={styles.closeArrowParent}><Text style={styles.closeArrow}><Icon name="close" size={40} /></Text></TouchableOpacity> 
-            <Text style={styles.modalTextAlert}>Alert!</Text>
-            <Text style={styles.modalText}>Are you sure you want to logout?</Text>
-            <View style={styles.buttonParent}>
-                <TouchableOpacity
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisibleLogout(!modalVisibleLogout)}
-                >
-                  <Text style={styles.textStyle}>Yes</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => setModalVisibleLogout(!modalVisibleLogout)}
-                >
-                  <Text style={styles.textStyle}>No</Text>
-                </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
+            <CommonModal open={modalVisibleLogout} 
+            onClose={() => setModalVisibleLogout(!modalVisibleLogout)} 
+            title="Are you sure you want to logout?"
+              onYes={() => setModalVisibleLogout(!modalVisibleLogout)}
+              onNo={() => setModalVisibleLogout(!modalVisibleLogout)}
+            />
+            
   </View>
   )
 }

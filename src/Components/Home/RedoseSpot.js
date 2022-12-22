@@ -9,11 +9,10 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-
 import {CameraScreen} from 'react-native-camera-kit';
 
-
-const RedoseSpot = () => { const [qrvalue, setQrvalue] = useState('');
+const RedoseSpot = () => { 
+const [qrvalue, setQrvalue] = useState('');
 const [opneScanner, setOpneScanner] = useState(false);
 
 const onOpenlink = () => {
@@ -32,7 +31,7 @@ return (
         showFrame={true}
         scanBarcode={true}
         laserColor={'blue'}
-        frameColor={'yellow'}
+        frameColor={'white'}
         colorForScannerFrame={'black'}
         onReadCode={event => onBarcodeScan(event.nativeEvent.codeStringValue)}
       />

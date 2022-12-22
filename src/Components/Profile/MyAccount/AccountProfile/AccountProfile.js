@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
       },
 
       main:{
-        height:190,
+        height:210,
         backgroundColor:'white',
         borderRadius:20,
         marginTop:20
@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
       invoiceTextclr:{
         color:'black',
         marginTop:5,
+        padding:3,
         fontWeight:'bold',
       }, 
       SectionStyle: {
@@ -163,11 +164,11 @@ const styles = StyleSheet.create({
       textInput:{
         color:'black',
         borderWidth:0.5,
-        height:24,
+        height:30,
         width:170,
         borderRadius:5,
-        fontSize:12,
-        padding:4
+        fontSize:13,
+        padding:7
       }, 
       flashMessage: {
         borderRadius: 9,

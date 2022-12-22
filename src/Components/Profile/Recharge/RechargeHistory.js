@@ -50,7 +50,8 @@ const RechargeHistory = () => {
           </View>
           <View>
                     <TouchableOpacity style={styles.SectionStyle} onPress={()=> navigation.navigate('addCredit')}> 
-                    <Text style={styles.otp}> <Icon name="add" size={25} style={styles.iconaddColor}/> Add Credit</Text>
+                    <Icon name="add" size={25} style={styles.iconaddColor}/>
+                    <Text style={styles.otp}>Add Credit</Text>
                 </TouchableOpacity>
           </View>
   </View>
@@ -185,20 +186,19 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     marginRight: 70,
     marginBottom: 20,
+    backgroundColor:'#ff2746',
+    borderRadius: 30,
+    justifyContent:'center',
+    flexDirection:'row',
+    padding:10
   },
   otp:{
     color:'white',
-    height:50,
-    textAlign:'center',
-    borderRadius: 30,
     fontSize:19,
     fontWeight:'bold',
-    paddingTop:8,
-    backgroundColor:'#ff2746',
   },
   iconaddColor:{
     color:'white',
-  
   },
   uploadiconbg:{
     height:45,

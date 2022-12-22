@@ -76,7 +76,7 @@ const AddCredit = () => {
                         placeholderTextColor="gray"
                         keyboardType="numeric"
                         maxLength={5}
-                        value={amount}
+                        value={amount.toString()}
                         onChangeText={e => setAmount(e)}
                         />
                     </TouchableOpacity>
