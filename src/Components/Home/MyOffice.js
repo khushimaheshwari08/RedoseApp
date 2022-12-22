@@ -19,7 +19,7 @@ const MyOffice = () => {
         <TouchableOpacity onPress={()=>navigation.navigate('newLocation')}>
         <Image
             source={require('../../assets/img/buzzer.png')}
-            style={{width: 300, height: 300,marginTop:40,marginLeft:10}}
+            style={{width: 300, height: 300,marginTop:20,marginLeft:10}}
         />
         </TouchableOpacity>
         <Text style={styles.tea}>Love tea everyday?</Text>
@@ -36,7 +36,9 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: 'white',
-      padding:12
+      paddingLeft:12,
+      paddingRight:12,
+      paddingTop:8
     },
     parent:{
         flexDirection:'row',
@@ -47,11 +49,11 @@ const styles = StyleSheet.create({
     noOffice:{
         color:'black',
         fontWeight:'600',
-        fontSize:19
+        fontSize:18
     },
     addOfficeText:{
         color: '#ff2746',
-        fontSize:17,
+        fontSize:16,
         fontWeight:'700'
     },
     addOffice:{

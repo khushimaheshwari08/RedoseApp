@@ -19,6 +19,8 @@ import AddNewLocation from './src/Components/Profile/Location/AddNewLocation';
 import QRIcon from './src/Components/Home/QRIcon';
 import AddCredit from './src/Components/Profile/AddCredit/AddCredit';
 import AccountStatement from './src/Components/Profile/BillingStatement/AccountStatement';
+import AccountProfile from './src/Components/Profile/MyAccount/AccountProfile/AccountProfile';
+import BillingDetails from './src/Components/Profile/MyAccount/BillingDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -110,6 +112,16 @@ const App = () => {
                options={{headerShown: false}}
                 name="myAccount"
                 component={MyAccount}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="accountProfile"
+                component={AccountProfile}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="billingDetails"
+                component={BillingDetails}
                 />
                 </Stack.Navigator>
     </NavigationContainer>

@@ -3,11 +3,13 @@ import React from 'react'
 import { View ,Text, TouchableOpacity, StyleSheet, Image,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import RupeeIcon from "react-native-vector-icons/FontAwesome"
+import FeatherIcon from "react-native-vector-icons/Feather"
 
 const RechargeHistory = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
+      <View>
     <View style={styles.parent}>
       <View style={styles.Profile}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -29,26 +31,28 @@ const RechargeHistory = () => {
           <View style={styles.divider2}></View>
             <View style={styles.transactionBlock}>
                 <View style={styles.transactionLeft}>
-                  <View style={styles.iconbg}>
-                    <RupeeIcon name="rupee" size={40} style={styles.rupeeiconColor}/>
+                  <View style={styles.uploadiconbg}>
+                    <FeatherIcon name="upload" size={30} style={styles.uploadiconColor}/>
                   </View>
                   <View style={styles.lefttext}>
-                  <Text style={{color:'red'}}>Used</Text>
-                  <Text style={{color:'red'}}>Date</Text>
+                  <Text style={{color:'#ff2746',fontWeight:'bold'}}>Used</Text>
+                  <Text style={{color:'gray'}}>Date</Text>
                   </View>
                 </View>
                   <View style={styles.transactionRight}>
                     <View style={styles.righttext} >
-                      <Text  style={{color:'red'}}>₹0</Text>
-                      <Text  style={{color:'red'}}>COMPLETED</Text>
+                      <Text  style={{color:'black',fontSize:18}}>₹0</Text>
+                      <Text  style={{color:'green',fontSize:10,fontWeight:'bold'}}>COMPLETED</Text>
                     </View>
                     <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={30} /></Text>
                   </View>
           </View>
-          <TouchableOpacity style={styles.SectionStyle} onPress={()=> navigation.navigate('addCredit')}>
-                    <Icon name="add" size={25} style={styles.iconColor}/>
-                    <Text style={styles.otp}>Add Credit</Text>
+          </View>
+          <View>
+                    <TouchableOpacity style={styles.SectionStyle} onPress={()=> navigation.navigate('addCredit')}> 
+                    <Text style={styles.otp}> <Icon name="add" size={25} style={styles.iconaddColor}/> Add Credit</Text>
                 </TouchableOpacity>
+          </View>
   </View>
   )
 }
@@ -59,7 +63,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
-    padding:10
+    padding:10,
+    justifyContent:'space-between',
   }, 
  
   parent:{
@@ -158,6 +163,7 @@ const styles = StyleSheet.create({
   righttext:{
     flexDirection:'column',
    alignItems:'flex-end',
+   marginRight:10
   },
   incomeBlockCredit:{
     height:40,
@@ -166,6 +172,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#ff2746',
     marginTop:200,
   },
+  
   addCredit:{
     textAlign:'center',
     fontSize:12,
@@ -175,19 +182,33 @@ const styles = StyleSheet.create({
     fontSize:15
   },
   SectionStyle: {
-    marginTop: 320,
-    marginLeft: 60,
-    marginRight: 60,
-    margin: 10,
+    marginLeft: 70,
+    marginRight: 70,
+    marginBottom: 20,
   },
   otp:{
     color:'white',
     height:50,
     textAlign:'center',
     borderRadius: 30,
-    fontSize:18,
+    fontSize:19,
     fontWeight:'bold',
-    paddingTop:12,
-    backgroundColor:'#ff2746'
+    paddingTop:8,
+    backgroundColor:'#ff2746',
   },
+  iconaddColor:{
+    color:'white',
+  
+  },
+  uploadiconbg:{
+    height:45,
+    width:45,
+    backgroundColor:'#f58473',
+    borderRadius:30,
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  uploadiconColor:{
+    color: '#ff2746',
+  }
   })

@@ -20,7 +20,15 @@ const OTPPage = () => {
   const OtpData = ()=>{
     let optNum = firstInputNum + secondInputNum + thirdInputNum + fourInputNum;
     if(optNum.length !== 4){
-      alert('Please Enter OTP');
+      showMessage({
+        message: "Alert",
+        description: "Please enter otp",
+        type: "danger",
+        style: styles.flashMessageAlert,
+        titleStyle: styles.flashTitle,
+        textStyle: styles.flashDes,
+        duration:	2000
+      });
       return;
     }
     setMessage(true)
@@ -212,5 +220,20 @@ const styles = StyleSheet.create({
     flashDes: {
       fontSize: 10,
       color:'gray'
+    },
+    flashMessageAlert:{
+      borderRadius: 9,
+      // opacity: 0.8,
+      shadowColor: 'gray',
+      shadowOffset: {width: -2, height: 4},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+      elevation:1,
+      margin: 12,
+      backgroundColor:'white',
+      marginBottom:40,
+      borderLeftWidth:5,
+      borderLeftColor:'red',
+      height:65
     }
   })

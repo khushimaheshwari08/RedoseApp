@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     marginRight:10
   },
   main: {
-    marginTop:15,
     marginLeft:30,
     marginRight:30,
     height: 55,

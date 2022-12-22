@@ -1,10 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
-import { Text, View ,StyleSheet, TouchableOpacity} from 'react-native'
+import React, { useEffect } from 'react'
+import { Text, View ,StyleSheet, TouchableOpacity,Alert} from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 
 const QRIcon = () => {
   const navigation = useNavigation();
+  useEffect(() => {
+       Alert.alert("Please add credits to place the order");
+  }, [])
   return (
     <LinearGradient colors={['#ff2746',  '#000000']} style={styles.linearGradient}>
         <Text style={styles.text}>Please show this QR code to Chhotu (Delivery Boy) to complete your order</Text>
