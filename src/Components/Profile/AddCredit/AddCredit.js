@@ -6,14 +6,22 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import Lottie from 'lottie-react-native';
 import Modal from 'react-native-modal'
 import {BlurView} from '@react-native-community/blur';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign'
 
 const AddCredit = () => {
     const navigation = useNavigation();
     const [amount, setAmount] = useState('');
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [blurType, setBlurType] = useState('light');
+    const [promoCode, setPromoCode] = useState('');
+    const [couponCode, setCouponCode] = useState(false);
 
     const toggleModal = () =>{
+      setIsModalVisible(!isModalVisible)
+    }
+
+    const onApply =()=>{
+      setCouponCode(couponCode)
       setIsModalVisible(!isModalVisible)
     }
 
@@ -70,14 +78,22 @@ const AddCredit = () => {
                     style={{width: 20, height: 20}}
                     />
                 </View>  
-                    
                     <Text style={styles.profileSettings}>Apply Promo Code</Text> 
-                      
                   </View>
-                 
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
                 </TouchableOpacity>
+                <View style={[styles.iconParent,styles.forMargin]}>
+                  <View style={styles.iconsubParent}>
+                    <View style={styles.Coupon}><Image
+                    source={require('../../../assets/icons/coupon.png')}
+                    style={{width: 20, height: 20}}
+                    />
+                </View>  
+                    <Text style={[styles.couponcodeApply,styles.forMarginLeft]}>{couponCode}</Text> 
+                  </View>
+                      <Text style={styles.rightArrow}><AntDesignIcon name="close" size={25} /></Text>  
+                </View>
                 <View style={styles.main}>
                     <Text style={[styles.rupee,styles.forMarginLeft,styles.fontRupee]}>₹</Text>
                     <TouchableOpacity style={[styles.parentOffice,]}>
@@ -90,7 +106,7 @@ const AddCredit = () => {
                         onChangeText={e => setAmount(e)}
                         />
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.parentRedoseSpot,{ backgroundColor: amount  ? '#ff2746': '#f7656c'}]} disabled={ amount  ? false: true}  >
+                    <TouchableOpacity style={[styles.parentRedoseSpot,{ backgroundColor: amount  ? '#ff2746': '#f7656c'}]} disabled={ amount  ? false: true}>
                         <Text style={[styles.text,]}>Refill Amount </Text>
                     </TouchableOpacity>
                 </View>
@@ -100,44 +116,43 @@ const AddCredit = () => {
                 </ScrollView>
                 
       </View>
-                
-                <Modal
-                onBackdropPress={()=> setIsModalVisible(false)}
-                onBackButtonPress={()=> setIsModalVisible(false)}
-                isVisible={isModalVisible}
-                swipeDirection="down"
-                onSwipeComplete={toggleModal}
-                animationIn='bounceInUp'
-                animationOut='bounceOutDown'
-                >
-                  {/* <BlurView
-                    style={styles.blurViewStyle}
-                    blurRadius={1}
-                    blurType={blurType}
-                  /> */}
-                    
-                  <View style={styles.modalContent}>
-                    <View style={styles.swipeIcon}></View>
-                    <View style={styles.swipeModalParent}>
-                      <View  style={styles.couponCodeParent}>
-                        <TextInput 
-                        placeholder="Enter Coupon Code" 
-                        placeholderTextColor="gray"
-                        autoCapitalize="characters"
-                        style={{color:'black'}}
-                        />
+          <Modal
+                    onBackdropPress={()=> setIsModalVisible(false)}
+                    onBackButtonPress={()=> setIsModalVisible(false)}
+                    isVisible={isModalVisible}
+                    swipeDirection="down"
+                    onSwipeComplete={toggleModal}
+                    animationIn='bounceInUp'
+                    animationOut='bounceOutDown'
+                    >
+                      {/* <BlurView
+                        style={styles.blurViewStyle}
+                        blurRadius={1}
+                        blurType={blurType}
+                      /> */}
+                        
+                      <View style={styles.modalContent}>
+                        <View style={styles.swipeIcon}></View>
+                        <View style={styles.swipeModalParent}>
+                                <View  style={styles.couponCodeParent}>
+                                  <TextInput 
+                                  placeholder="Enter Coupon Code" 
+                                  placeholderTextColor="gray"
+                                  autoCapitalize="characters"
+                                  style={{color:'black'}}
+                                  value={couponCode}
+                                  onChangeText={couponCode=> setCouponCode(couponCode)}
+                                  />
+                            </View>
+                          <View style={styles.Apply} >
+                            <TouchableOpacity><Text style={styles.ApplyText} onPress={onApply}>Apply</Text></TouchableOpacity>
+                          </View>
+                        </View>
+                        <Lottie style={styles.noResultImg} source={require('../../../assets/no_result.json')} autoPlay loop />
+                    <Text style={styles.notLocation}>No Records found</Text>
+                    <Text style={styles.textTry}>Sorry. We couldn't find anything. You can try another search</Text>
                       </View>
-                      <View style={styles.Apply} >
-                        <Text style={styles.AppyText}>Apply</Text>
-                      </View>
-                    </View>
-                    <Lottie style={styles.noResultImg} source={require('../../../assets/no_result.json')} autoPlay loop />
-                <Text style={styles.notLocation}>No Records found</Text>
-                <Text style={styles.textTry}>Sorry. We couldn't find anything. You can try another search</Text>
-                  </View>
-                </Modal>
-                
-               
+                    </Modal>    
         </View>
   )
 }
@@ -362,7 +377,7 @@ const styles = StyleSheet.create({
         marginRight:20,
         marginTop:10,
       },
-      AppyText:{
+      ApplyText:{
         fontSize:17,
         color: '#ff2746',
         fontWeight:'bold'
@@ -374,4 +389,9 @@ const styles = StyleSheet.create({
         bottom: 0,
         right: 0,
       },
+      couponcodeApply:{
+        fontSize:15,
+        fontWeight:'bold',
+        color:'black'
+      }
 })
