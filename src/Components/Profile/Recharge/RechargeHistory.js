@@ -1,12 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
-import { View ,Text, TouchableOpacity, StyleSheet, Image,} from 'react-native'
+import React, { useState } from 'react'
+import { View ,Text, TouchableOpacity, StyleSheet, Image, TextInput,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import RupeeIcon from "react-native-vector-icons/FontAwesome"
 import FeatherIcon from "react-native-vector-icons/Feather"
+import Lottie from 'lottie-react-native';
+import Modal from 'react-native-modal'
+import {BlurView} from '@react-native-community/blur';
 
 const RechargeHistory = () => {
   const navigation = useNavigation();
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const toggleModal = () =>{
+    setIsModalVisible(!isModalVisible)
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -29,6 +37,7 @@ const RechargeHistory = () => {
           </View>
             <Text style={styles.past}>PAST TRANSACTIONS</Text>
           <View style={styles.divider2}></View>
+          <TouchableOpacity onPress={toggleModal}>
             <View style={styles.transactionBlock}>
                 <View style={styles.transactionLeft}>
                   <View style={styles.uploadiconbg}>
@@ -46,7 +55,8 @@ const RechargeHistory = () => {
                     </View>
                     <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={30} /></Text>
                   </View>
-          </View>
+            </View>
+          </TouchableOpacity>
           </View>
           <View>
                     <TouchableOpacity style={styles.SectionStyle} onPress={()=> navigation.navigate('addCredit')}> 
@@ -54,6 +64,47 @@ const RechargeHistory = () => {
                     <Text style={styles.otp}>Add Credit</Text>
                 </TouchableOpacity>
           </View>
+          <Modal
+                onBackdropPress={()=> setIsModalVisible(false)}
+                onBackButtonPress={()=> setIsModalVisible(false)}
+                isVisible={isModalVisible}
+                swipeDirection="down"
+                onSwipeComplete={toggleModal}
+                animationIn='bounceInUp'
+                animationOut='bounceOutDown'
+                >
+                  {/* <BlurView
+                    style={styles.blurViewStyle}
+                    blurRadius={1}
+                    blurType={blurType}
+                  /> */}
+                    
+                  <View style={styles.modalContent}>
+                    <View style={styles.swipeIcon}></View>
+                      <View style={styles.swipeTop}>
+                        <View style={styles.swipeHeader}>
+                            <View style={styles.iconbgsmall}>
+                            <RupeeIcon name="rupee" size={20} style={styles.rupeeiconColor}/>
+                            </View>
+                            <Text style={styles.textIndianRs}>Indian Rupee</Text>
+                        </View>
+                        <Text style={styles.usedText}>Used</Text>
+                      </View>
+                      <View style={styles.divider2}></View>
+                      <Text style={styles.usedAmountText}>USED AMOUNT </Text>
+                      <Text style={[styles.amount, {textAlign:'center'}]}> 0 INR</Text>
+                      <View style={styles.modalFooter}>
+                        <Text style={styles.statusText}>Status</Text>
+                        <Text style={{color:'black',fontSize:17,marginRight:20}}>COMPLETED</Text>
+                      </View>
+                      <View style={styles.divider2}></View>
+                      <View style={styles.modalFooter}>
+                        <Text style={styles.statusText}>Status</Text>
+                        <Text style={{color:'black',fontSize:17,marginRight:20}}>DAY DATE</Text>
+                      </View>
+                      <View style={styles.divider2}></View>
+                   </View>
+                </Modal>
   </View>
   )
 }
@@ -210,5 +261,75 @@ const styles = StyleSheet.create({
   },
   uploadiconColor:{
     color: '#ff2746',
+  },
+  modalContent:{
+    backgroundColor:'#ffffff',
+    minHeight:270,
+    marginTop:420,
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20
+  },
+  swipeIcon:{
+    backgroundColor:'gray',
+    alignItems:'center',
+    marginTop:10,
+    marginRight:140,
+    marginLeft:140,
+    height:8,
+    borderRadius:20
+  },
+  blurViewStyle: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    right: 0,
+  },
+
+  iconbgsmall:{
+    height:30,
+    width:30,
+    backgroundColor:'#ff2746',
+    borderRadius:30,
+    justifyContent:'center',
+    alignItems:'center'
+  },
+  swipeHeader:{
+    flexDirection:'row',
+    alignItems:'center',
+    marginLeft:20,
+  },
+  textIndianRs:{
+    color:'black',
+    marginLeft:10,
+    fontWeight:'bold',
+    fontSize:17
+  },
+  swipeTop:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
+    marginTop:10
+  },
+  usedText:{
+    color:'gray',
+    marginRight:20
+  },
+  usedAmountText:{
+    textAlign:'center',
+    color:'gray',
+    marginTop:20,
+    fontSize:17
+  },
+  modalFooter:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems:'center',
+    marginTop:20,
+  },
+  statusText:{
+    color:'gray',
+    marginLeft:20,
+    fontSize:17
   }
   })

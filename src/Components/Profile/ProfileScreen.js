@@ -61,6 +61,16 @@ const ProfileScreen = () => {
                 <Text style={styles.phnNo}>Free Credits Received so far</Text>
                 </View>
                 </View>
+              <View style={styles.teaBlock}>
+              <Image
+                    source={require('../../assets/icons/tea-red.png')}
+                    style={{width: 50, height: 50,marginRight:25}}
+                />
+                <View>
+                 <Text style={styles.userName}>0</Text>
+                <Text style={styles.phnNo}>Free Credits Received so far</Text>
+                </View>
+                </View>
                 <TouchableOpacity onPress={()=> navigation.navigate('manageLocation')}>
                  <View style={[styles.iconParent,styles.forMargin]}>
                   <View style={styles.iconsubParent}>

@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View ,Text, TouchableOpacity, StyleSheet, Modal,Alert} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
+import {BlurView} from '@react-native-community/blur';
+
 const CommonModal = ({open,onClose,title,onYes,onNo}) => {
+  const [blurType, setBlurType] = useState('light');
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={open}
     >
-    <View style={styles.container}>
+   
+    <BlurView
+        
+            style={styles.blurViewStyle}
+            blurRadius={1}
+            blurType={blurType}
+          />
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity
@@ -35,7 +44,6 @@ const CommonModal = ({open,onClose,title,onYes,onNo}) => {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
       </View>
     </Modal>
   );
@@ -169,5 +177,12 @@ const styles = StyleSheet.create({
       closeArrowParent:{
         alignItems:'flex-end',
         justifyContent:'flex-end',
+      },
+       blurViewStyle: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        right: 0,
       },
     })

@@ -4,13 +4,22 @@ import UserAvatar from 'react-native-user-avatar';
 import Icon from "react-native-vector-icons/MaterialIcons"
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Lottie from 'lottie-react-native';
+import Modal from 'react-native-modal'
+import {BlurView} from '@react-native-community/blur';
 
 const AddCredit = () => {
     const navigation = useNavigation();
-    const [amount, setAmount] = useState(0);
-    
+    const [amount, setAmount] = useState('');
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [blurType, setBlurType] = useState('light');
+
+    const toggleModal = () =>{
+      setIsModalVisible(!isModalVisible)
+    }
+
   return (
     <View style={styles.container}>
+      <View style={styles.forPadding}>
         <View style={styles.parent}>
             <View style={styles.Profile}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -53,7 +62,7 @@ const AddCredit = () => {
                 <Text style={[styles.rupee, {color: amount == 1000 ? '#ffffff':'black'}]}>₹1000</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={toggleModal}>
                <View style={[styles.iconParent,styles.forMargin]}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.Coupon}><Image
@@ -62,9 +71,10 @@ const AddCredit = () => {
                     />
                 </View>  
                     
-                       <Text style={styles.profileSettings}>Apply Promo Code</Text>
+                    <Text style={styles.profileSettings}>Apply Promo Code</Text> 
                       
                   </View>
+                 
                       <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
                 </View>
                 </TouchableOpacity>
@@ -88,19 +98,62 @@ const AddCredit = () => {
                 <Text style={styles.notLocation}>No Records found</Text>
                 <Text style={styles.textTry}>Sorry. We couldn't find anything. You can try another search</Text>
                 </ScrollView>
+                
+      </View>
+                
+                <Modal
+                onBackdropPress={()=> setIsModalVisible(false)}
+                onBackButtonPress={()=> setIsModalVisible(false)}
+                isVisible={isModalVisible}
+                swipeDirection="down"
+                onSwipeComplete={toggleModal}
+                animationIn='bounceInUp'
+                animationOut='bounceOutDown'
+                >
+                  {/* <BlurView
+                    style={styles.blurViewStyle}
+                    blurRadius={1}
+                    blurType={blurType}
+                  /> */}
+                    
+                  <View style={styles.modalContent}>
+                    <View style={styles.swipeIcon}></View>
+                    <View style={styles.swipeModalParent}>
+                      <View  style={styles.couponCodeParent}>
+                        <TextInput 
+                        placeholder="Enter Coupon Code" 
+                        placeholderTextColor="gray"
+                        autoCapitalize="characters"
+                        style={{color:'black'}}
+                        />
+                      </View>
+                      <View style={styles.Apply} >
+                        <Text style={styles.AppyText}>Apply</Text>
+                      </View>
+                    </View>
+                    <Lottie style={styles.noResultImg} source={require('../../../assets/no_result.json')} autoPlay loop />
+                <Text style={styles.notLocation}>No Records found</Text>
+                <Text style={styles.textTry}>Sorry. We couldn't find anything. You can try another search</Text>
+                  </View>
+                </Modal>
+                
+               
         </View>
   )
 }
-
+ 
 export default AddCredit
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#f2f2f2',
+     
+    }, 
+    forPadding:{
       paddingTop:12,
       paddingRight:12,
       paddingLeft:15,
-    }, 
+    },
    
     parent:{
         flexDirection:'row',
@@ -133,8 +186,7 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     phnNo:{
-        color:'gray',
-       
+        color:'gray', 
     },
     userAvatar:{
         height:35,
@@ -275,5 +327,51 @@ const styles = StyleSheet.create({
         fontStyle:'italic',
         fontWeight:'500',
         marginBottom:20
+      },
+      modalContent:{
+        backgroundColor:'#ffffff',
+        minHeight:700,
+        marginTop:290,
+        borderTopLeftRadius:20,
+        borderTopRightRadius:20,
+      },
+      swipeIcon:{
+        backgroundColor:'#ff2746',
+        alignItems:'center',
+        marginTop:10,
+        marginRight:140,
+        marginLeft:140,
+        height:8,
+        borderRadius:20
+      },
+      swipeModalParent:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
+      },
+      couponCodeParent:{
+        borderWidth:1,
+        marginLeft:20,
+        borderRadius:8,
+        height:40,
+        width:230,
+        marginTop:15,
+        borderColor:'gray'
+      },
+      Apply:{
+        marginRight:20,
+        marginTop:10,
+      },
+      AppyText:{
+        fontSize:17,
+        color: '#ff2746',
+        fontWeight:'bold'
+      },
+      blurViewStyle: {
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        bottom: 0,
+        right: 0,
       },
 })
