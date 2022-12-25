@@ -72,6 +72,7 @@ const RechargeHistory = () => {
                 onSwipeComplete={toggleModal}
                 animationIn='bounceInUp'
                 animationOut='bounceOutDown'
+                style={{width: '100%', marginLeft: -2}}
                 >
                   {/* <BlurView
                     style={styles.blurViewStyle}

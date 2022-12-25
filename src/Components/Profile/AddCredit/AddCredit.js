@@ -21,8 +21,15 @@ const AddCredit = () => {
     }
 
     const onApply =()=>{
-      setCouponCode(couponCode)
+      if(promoCode !== ''){
+      setCouponCode(true)
+      }
       setIsModalVisible(!isModalVisible)
+    }
+
+    const onCloseCouponCode =()=>{
+      setCouponCode(false)
+      setPromoCode('')
     }
 
   return (
@@ -70,30 +77,44 @@ const AddCredit = () => {
                 <Text style={[styles.rupee, {color: amount == 1000 ? '#ffffff':'black'}]}>₹1000</Text>
                 </TouchableOpacity>
             </View>
+            
+            {couponCode ? (
+            <View style={[styles.iconParent, styles.forMargin]}>
+              <View style={styles.iconsubParent}>
+                <View style={styles.Coupon}>
+                  <Image
+                    source={require('../../../assets/icons/coupon.png')}
+                    style={{width: 20, height: 20}}
+                  />
+                </View>
+                <Text style={[styles.couponcodeApply, styles.forMarginLeft]}>
+                  {promoCode}
+                </Text>
+              </View>
+              <TouchableOpacity onPress={onCloseCouponCode}><Text style={styles.rightArrow}>
+                <AntDesignIcon name="close" size={25} />
+              </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
             <TouchableOpacity onPress={toggleModal}>
-               <View style={[styles.iconParent,styles.forMargin]}>
-                  <View style={styles.iconsubParent}>
-                    <View style={styles.Coupon}><Image
-                    source={require('../../../assets/icons/coupon.png')}
-                    style={{width: 20, height: 20}}
+              <View style={[styles.iconParent, styles.forMargin]}>
+                <View style={styles.iconsubParent}>
+                  <View style={styles.Coupon}>
+                    <Image
+                      source={require('../../../assets/icons/coupon.png')}
+                      style={{width: 20, height: 20}}
                     />
-                </View>  
-                    <Text style={styles.profileSettings}>Apply Promo Code</Text> 
                   </View>
-                      <Text style={styles.rightArrow}><Icon name="keyboard-arrow-right" size={40} /></Text>  
+                  <Text style={styles.profileSettings}>Apply Promo Code</Text>
                 </View>
-                </TouchableOpacity>
-                <View style={[styles.iconParent,styles.forMargin]}>
-                  <View style={styles.iconsubParent}>
-                    <View style={styles.Coupon}><Image
-                    source={require('../../../assets/icons/coupon.png')}
-                    style={{width: 20, height: 20}}
-                    />
-                </View>  
-                    <Text style={[styles.couponcodeApply,styles.forMarginLeft]}>{couponCode}</Text> 
-                  </View>
-                      <Text style={styles.rightArrow}><AntDesignIcon name="close" size={25} /></Text>  
-                </View>
+                <Text style={styles.rightArrow}>
+                  <Icon name="keyboard-arrow-right" size={40} />
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+
                 <View style={styles.main}>
                     <Text style={[styles.rupee,styles.forMarginLeft,styles.fontRupee]}>₹</Text>
                     <TouchableOpacity style={[styles.parentOffice,]}>
@@ -124,6 +145,7 @@ const AddCredit = () => {
                     onSwipeComplete={toggleModal}
                     animationIn='bounceInUp'
                     animationOut='bounceOutDown'
+                    style={{width: '100%', marginLeft: -2}}
                     >
                       {/* <BlurView
                         style={styles.blurViewStyle}
@@ -140,8 +162,8 @@ const AddCredit = () => {
                                   placeholderTextColor="gray"
                                   autoCapitalize="characters"
                                   style={{color:'black'}}
-                                  value={couponCode}
-                                  onChangeText={couponCode=> setCouponCode(couponCode)}
+                                  value={promoCode}
+                                  onChangeText={text=> setPromoCode(text)}
                                   />
                             </View>
                           <View style={styles.Apply} >
