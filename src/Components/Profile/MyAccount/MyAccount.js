@@ -59,6 +59,7 @@ const MyAccount = () => {
             <CommonModal open={modalVisibleDelete} 
             onClose={() => setModalVisibleDelete(!modalVisibleDelete)} 
             title="Are you sure you want to delete your account?"
+            heading="Alert!"
               onYes={() => setModalVisibleDelete(!modalVisibleDelete)}
               onNo={() => setModalVisibleDelete(!modalVisibleDelete)}
             />
@@ -83,6 +84,7 @@ const MyAccount = () => {
             <CommonModal open={modalVisibleLogout} 
             onClose={() => setModalVisibleLogout(!modalVisibleLogout)} 
             title="Are you sure you want to logout?"
+            heading="Alert!"
               onYes={() => setModalVisibleLogout(!modalVisibleLogout)}
               onNo={() => setModalVisibleLogout(!modalVisibleLogout)}
             />

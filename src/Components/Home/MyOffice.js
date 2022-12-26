@@ -13,33 +13,21 @@ const MyOffice = () => {
   }
   return (
     <View style={styles.container}>
-        {/* <View style={styles.parent}>
-            <View>
-                <Text style={styles.noOffice} >No Office Added </Text>
-            </View>
-            <TouchableOpacity style={styles.addOffice} onPress={()=>navigation.navigate('newLocation')} >
-                <Icon name="add" size={22} style={styles.searchIcon}/>
-                <Text style={styles.addOfficeText}>Add new office</Text>
-            </TouchableOpacity>
-        </View> */}
          <View style={styles.parentWing}>
                 <TouchableOpacity style={styles.afteradddBuilding} onPress={toggleModal}>
                     <Text style={styles.WingHeading}>Binori - A - 101 </Text>
-                    <Text style={{color:'black',marginRight:20,  fontSize:18,}}>(Dummy)</Text>
+                    <Text style={{color:'black',marginRight:20,  fontSize:18}}>(Dummy)</Text>
                       <Icon name="keyboard-arrow-down" size={26} style={styles.searchIcon}/>
                 </TouchableOpacity>
                 <Text style={styles.WingSubHeading}>Friends Avenue, Bodakdev, Ahmedabad,Gujarat 380054</Text>
           </View>
-        <TouchableOpacity onPress={()=>navigation.navigate('newLocation')}>
+        <TouchableOpacity>
         <Image
             source={require('../../assets/img/buzzer.png')}
             style={{width: 300, height: 300,marginTop:20,marginLeft:10}}
         />
         </TouchableOpacity>
         <Text style={styles.tea}>Love tea everyday?</Text>
-        {/* <TouchableOpacity style={styles.SectionStyle} onPress={()=>navigation.navigate('newLocation')}>
-        <Text style={styles.otp}>Auto-Schedule Chhotu Calls</Text>
-      </TouchableOpacity> */}
        <TouchableOpacity style={styles.SectionStyle} onPress={()=>navigation.navigate('autoSchedule')}>
         <Text style={styles.otp}>Auto-Schedule Chhotu Calls</Text>
       </TouchableOpacity>
@@ -74,6 +62,28 @@ const MyOffice = () => {
                   </View>
                 </Modal>
     </View>
+    // <View style={styles.container}>
+    //     <View style={styles.parent}>
+    //         <View>
+    //             <Text style={styles.noOffice} >No Office Added </Text>
+    //         </View>
+    //         <TouchableOpacity style={styles.addOffice} onPress={()=>navigation.navigate('newLocation')} >
+    //             <Icon name="add" size={22} style={styles.searchIcon}/>
+    //             <Text style={styles.addOfficeText}>Add new office</Text>
+    //         </TouchableOpacity>
+    //     </View>
+        
+    //     <TouchableOpacity onPress={()=>navigation.navigate('newLocation')}>
+    //     <Image
+    //         source={require('../../assets/img/buzzer.png')}
+    //         style={{width: 300, height: 300,marginTop:20,marginLeft:10}}
+    //     />
+    //     </TouchableOpacity>
+    //     <Text style={styles.tea}>Love tea everyday?</Text>
+    //     <TouchableOpacity style={styles.SectionStyle} onPress={()=>navigation.navigate('newLocation')}>
+    //     <Text style={styles.otp}>Auto-Schedule Chhotu Calls</Text>
+    //   </TouchableOpacity>
+    // </View>
   )
 }
 
@@ -144,7 +154,7 @@ const styles = StyleSheet.create({
       },
       WingSubHeading:{
           color:'black',
-          fontSize:13,
+          fontSize:12,
       },
       afteradddBuilding:{
         flexDirection:'row',

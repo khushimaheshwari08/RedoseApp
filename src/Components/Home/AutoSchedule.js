@@ -3,17 +3,25 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View,Switch, Image, ScrollView,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import Modal from 'react-native-modal'
+import CommonModal from '../../Common/Modal/Modal';
 
 const AutoSchedule = () => {
     const navigation = useNavigation();
     const [isModalVisible, setIsModalVisible] = useState(false)
     const [isEnabled, setIsEnabled] =useState(false);
     const [week, setWeek] = useState('Monday')
+    const [modalTimeSlot, setModalTimeSlot] = useState(false);
+    const [radioState, setRadioState] = useState(false)
 
     const toggleModal = () =>{
         setIsModalVisible(!isModalVisible)
       }
       const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+      const onYes = ()=>{
+        setRadioState(true)
+        setModalTimeSlot(!modalTimeSlot)
+      }
 
   return (
     <View style={styles.container}>
@@ -43,7 +51,7 @@ const AutoSchedule = () => {
                             thumbColor={isEnabled ? 'white' : '#f4f3f4'}
                             onValueChange={toggleSwitch}
                             value={isEnabled}
-                            style={{marginLeft:15}}
+                            style={{marginLeft:10}}
                     />
                     </View>
                     <View style={styles.mainWeekView}>
@@ -114,14 +122,25 @@ const AutoSchedule = () => {
                             />
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.setScheduleParent}>
+                    <TouchableOpacity style={styles.setScheduleParent} onPress={() => setModalTimeSlot(true)}>
                         <View style={{width:270}}>
                             <Text style={{color:'black'}}>Set your daily schedule to get tea/coffee at your desk</Text>
                         </View>
+                        {radioState ?
+                        <Text style={{color:'black'}}>Hy</Text>
+                        :
                         <View style={styles.forRadioButton}></View>
+                        }
                     </TouchableOpacity>
+                    <CommonModal open={modalTimeSlot} 
+                          onClose={() => setModalTimeSlot(!modalTimeSlot)} 
+                          title="You want to apply monday timeslot to other days also!"
+                          heading="Are you sure"
+                            onYes={onYes}
+                            onNo={() => setModalTimeSlot(!modalTimeSlot)}
+                          />
                     <View style={styles.timeMain}>
-                        <TouchableOpacity style={styles.timeParent}>
+                        <TouchableOpacity style={styles.timeParent} >
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
                         <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
                         </TouchableOpacity>
@@ -131,93 +150,98 @@ const AutoSchedule = () => {
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>10:00 AM to 10:30 AM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>10:30 AM to 11:00 AM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>11:00 AM to 11:30 AM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>11:30 AM to 12:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>12:00 PM to 12:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>12:30 PM to 01:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>01:00 PM to 01:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>01:30 PM to 02:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>02:00 PM to 02:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>02:30 PM to 03:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>03:00 PM to 03:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>03:30 PM to 04:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>04:00 PM to 04:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>04:30 PM to 05:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>05:00 PM to 05:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>05:30 PM to 06:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>06:00 PM to 06:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>06:30 PM to 07:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>07:00 PM to 07:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+                        <Text style={styles.timeText}>07:30 PM to 08:00 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+                        <Text style={styles.timeText}>08:00 PM to 08:30 PM</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={[styles.timeParent,styles.forml,styles.forMt]}>
                         <Icon name="access-time" size={30} style={styles.searchIcon}/>
-                        <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
-                        </TouchableOpacity>
-                       
+                        <Text style={styles.timeText}>08:30 PM to 09:00 PM</Text>
+                        </TouchableOpacity>                      
+                    </View>
+                    <View style={{flex:1,justifyContent:'center',alignItems:'center',marginBottom:30,
+                    marginTop:30}}>
+                                <TouchableOpacity style={styles.saveView} onPress={()=> navigation.navigate('homeScreen')} >                            
+                                    <Text style={{color:'white',fontWeight:'bold'}}>Save</Text>
+                                </TouchableOpacity>
                     </View>
                 <Modal
                     onBackdropPress={()=> setIsModalVisible(false)}
@@ -260,7 +284,8 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: 'white',
-      padding:20,
+      paddingLeft:20,
+      paddingRight:20,
       paddingTop:8
     },
     parent:{
@@ -331,7 +356,7 @@ const styles = StyleSheet.create({
         marginLeft:20,
       },
       textIndianRs:{
-        color: '#ff2746',
+        color:'#ff2746',
         fontWeight:'bold',
         fontSize:22
       },
@@ -421,7 +446,7 @@ const styles = StyleSheet.create({
       weekView:{
         backgroundColor:'#f2f2f2',
         height:100,
-        width:47,
+        width:46,
         alignItems:'center',
         borderRadius:5,
         marginTop:15,
@@ -475,5 +500,13 @@ const styles = StyleSheet.create({
       },
       forMt:{
         marginTop:10
+      },
+      saveView:{
+        backgroundColor:'#ff2746', 
+        height:35,
+        alignItems:'center',
+        justifyContent:'center',
+        width:120,
+        borderRadius:20,
       }
 })

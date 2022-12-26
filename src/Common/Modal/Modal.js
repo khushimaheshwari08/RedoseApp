@@ -3,7 +3,7 @@ import { View ,Text, TouchableOpacity, StyleSheet, Modal,Alert} from 'react-nati
 import Icon from "react-native-vector-icons/MaterialIcons"
 import {BlurView} from '@react-native-community/blur';
 
-const CommonModal = ({open,onClose,title,onYes,onNo}) => {
+const CommonModal = ({open,onClose,title,onYes,onNo,heading}) => {
   const [blurType, setBlurType] = useState('light');
   return (
     <Modal
@@ -27,7 +27,7 @@ const CommonModal = ({open,onClose,title,onYes,onNo}) => {
               <Icon name="close" size={40} />
             </Text>
           </TouchableOpacity>
-          <Text style={styles.modalTextAlert}>Alert!</Text>
+          <Text style={styles.modalTextAlert}>{heading}</Text>
           <Text style={styles.modalText}>
            {title}
           </Text>
