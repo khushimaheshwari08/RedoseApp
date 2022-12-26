@@ -363,7 +363,7 @@ const styles = StyleSheet.create({
         marginTop:10,
         fontStyle:'italic',
         fontWeight:'500',
-        marginBottom:20
+        marginBottom:50
       },
       modalContent:{
         backgroundColor:'#ffffff',

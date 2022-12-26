@@ -21,6 +21,11 @@ import AddCredit from './src/Components/Profile/AddCredit/AddCredit';
 import AccountStatement from './src/Components/Profile/BillingStatement/AccountStatement';
 import AccountProfile from './src/Components/Profile/MyAccount/AccountProfile/AccountProfile';
 import BillingDetails from './src/Components/Profile/MyAccount/BillingDetails';
+import SelectWing from './src/Components/Profile/Location/SelectWing';
+import SelectFloor from './src/Components/Profile/Location/SelectFloor';
+import SelectOfficeNo from './src/Components/Profile/Location/SelectOfficeNo';
+import AddOfficeName from './src/Components/Profile/Location/AddOfficeName';
+import AutoSchedule from './src/Components/Home/AutoSchedule';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +58,11 @@ const App = () => {
                 name="homeScreen"
                 component={HomeScreen}
                 />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="autoSchedule"
+                component={AutoSchedule}
+                />
                   <Stack.Screen
                options={{headerShown: false}}
                 name="qrIconScreen"
@@ -77,6 +87,26 @@ const App = () => {
                options={{headerShown: false}}
                 name="newLocation"
                 component={AddNewLocation}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="selectWing"
+                component={SelectWing}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="selectFloor"
+                component={SelectFloor}
+                />
+                 <Stack.Screen
+               options={{headerShown: false}}
+                name="selectOfficeNo"
+                component={SelectOfficeNo}
+                />
+                <Stack.Screen
+               options={{headerShown: false}}
+                name="addOfficeName"
+                component={AddOfficeName}
                 />
                 <Stack.Screen
                 options={{headerShown: false}}

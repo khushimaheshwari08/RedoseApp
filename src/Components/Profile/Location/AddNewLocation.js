@@ -22,7 +22,7 @@ const AddNewLocation = () => {
               <TouchableOpacity style={styles.icon}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
         </View>
       </View>
-      <TouchableOpacity >
+      <TouchableOpacity onPress={()=> navigation.navigate('selectWing')}>
                  <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><Icon name="my-location" size={25} style={styles.searchIcon}/></View>  
@@ -32,8 +32,8 @@ const AddNewLocation = () => {
                     <Text style={styles.locationAddressText}>Friends Avenue, Bodakdev, Ahmedabad,Gujarat 380054</Text>
                   </View>
                 </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={()=> navigation.navigate('manageLocation')}>
+       </TouchableOpacity>
+                <TouchableOpacity onPress={()=> navigation.navigate('selectWing')}>
                  <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
                     <View style={styles.icon}><Icon name="my-location" size={25} style={styles.searchIcon}/></View>  

@@ -1,32 +1,54 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
-import { View ,Text, TouchableOpacity, StyleSheet, Image,} from 'react-native'
+import React, { useState } from 'react'
+import { View ,Text, TouchableOpacity, StyleSheet, Image,Switch,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 
 const ManageLocation = () => {
     const navigation = useNavigation();
+    const [isEnabled, setIsEnabled] = useState(true);
+
+    // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <View style={styles.container}>
             <View style={styles.parent}>
-            <View style={styles.Profile}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Icon name="arrow-back" size={25} style={styles.iconColor}/>
-                </TouchableOpacity>
-              <Text style={styles.heading}>Manage Location</Text>
+              <View style={styles.head}>
+                <View style={styles.Profile}>
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Icon name="arrow-back" size={25} style={styles.iconColor}/>
+                    </TouchableOpacity>
+                      <Text style={styles.heading}>Manage Location</Text>
+                </View>
+                  <TouchableOpacity style={styles.icon}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
               </View>
-              <View>
-              <TouchableOpacity style={styles.icon}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
-              </View>
-              </View>
-              <Image
+                      <TouchableOpacity style={styles.iconParent} onPress={()=> navigation.navigate('newLocation')}>
+                        <View style={styles.iconsubParent}>
+                          <View style={styles.icon}><Icon name="my-location" size={25} style={styles.searchIcon}/></View>  
+                            <Text style={styles.profileSettings}>Binori (Dummy)</Text>
+                            <TouchableOpacity style={styles.switch}>
+                              <Switch
+                                trackColor={{false: '#767577', true: 'red'}}
+                                thumbColor={isEnabled ? 'white' : '#f4f3f4'}
+                                value={isEnabled}
+                              />
+                          </TouchableOpacity>
+                        </View>
+                          <View style={styles.locationAddress}>
+                            <Text style={styles.locationAddressText}>Friends Avenue, Bodakdev, Ahmedabad,Gujarat 380054</Text>
+                          </View>
+                      </TouchableOpacity>
+                                    {/* <Image
                     source={require('../../../assets/img/location.png')}
                     style={{width: 300, height: 300,marginTop:45,marginLeft:20}}
                 />
                 <Text style={styles.notLocation}>Not Location Found</Text>
-                <Text style={styles.text}>Sorry.We couldn't find anything. You can try another search or location</Text>
-                <TouchableOpacity onPress={()=> navigation.navigate('newLocation')}>
-                  <Text style={styles.otp}>Add New Location</Text>
-                </TouchableOpacity>
+                <Text style={styles.text}>Sorry.We couldn't find anything. You can try another search or location</Text> */}
+              </View>
+                     
+                      <View>
+                          <TouchableOpacity onPress={()=> navigation.navigate('newLocation')}>
+                            <Text style={styles.otp}>Add New Location</Text>
+                          </TouchableOpacity>
+                      </View>
         </View>
   )
 }
@@ -37,18 +59,18 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#f2f2f2',
-      padding:10
+      padding:10,
+      justifyContent:'space-between',
     }, 
-   
-    parent:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center'
-      },
-
+    
       Profile:{
         flexDirection:'row',
         alignItems:'center',
+      },
+      head:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginBottom:20
       },
       heading:{
         fontSize:23,
@@ -96,5 +118,43 @@ const styles = StyleSheet.create({
       },
       searchIcon:{
         color: '#ff2746',
+      },
+      icon:{
+        backgroundColor:'#ffffff',
+        height:45,
+        width:45,
+        alignItems:'center',
+        justifyContent:'center',
+        borderRadius:25,
+      },
+      searchIcon:{
+        color: '#ff2746',
+      },
+      iconParent:{  
+        justifyContent:'space-between',
+        borderColor:'white',
+        borderWidth:1,
+        borderRadius:10,
+        backgroundColor: 'white',
+        paddingBottom:30,
+      },
+      iconsubParent:{
+        flexDirection:'row',
+        alignItems:'center',
+      },
+      profileSettings:{
+        fontSize:18,
+        color:  '#ff2746',
+        fontWeight:'bold',
+      },
+      locationAddress:{
+        marginLeft:15
+      },
+      locationAddressText:{
+        color:'black',
+        fontSize:12
+      },
+      switch:{
+        marginLeft:110
       }
     })
