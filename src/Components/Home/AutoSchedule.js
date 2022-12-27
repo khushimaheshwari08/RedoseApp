@@ -4,6 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View,Switch, Image, ScrollView,} fr
 import Icon from "react-native-vector-icons/MaterialIcons"
 import Modal from 'react-native-modal'
 import CommonModal from '../../Common/Modal/Modal';
+import Lottie from 'lottie-react-native';
 
 const AutoSchedule = () => {
     const navigation = useNavigation();
@@ -127,7 +128,9 @@ const AutoSchedule = () => {
                             <Text style={{color:'black'}}>Set your daily schedule to get tea/coffee at your desk</Text>
                         </View>
                         {radioState ?
-                        <Text style={{color:'black'}}>Hy</Text>
+                        <View style={styles.RedCoupon}>
+                        <Lottie source={require('../../assets/LottieData/success.json')} autoPlay loop={false} />
+                      </View>
                         :
                         <View style={styles.forRadioButton}></View>
                         }
@@ -508,5 +511,12 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         width:120,
         borderRadius:20,
-      }
+      },
+      RedCoupon:{
+             backgroundColor:'#ded9d9',
+            height:30,
+            width:30,
+            borderRadius:20,
+            marginLeft:5
+      },
 })

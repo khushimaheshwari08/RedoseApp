@@ -1,27 +1,56 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
+import AntDesignIcon from "react-native-vector-icons/AntDesign"
 
 
 const AddNewLocation = () => {
     const navigation = useNavigation();
+    const [search, setSearch] = useState(false)
+
+    const onSearch =()=>{
+      setSearch(true)
+    }
+    const onSearchClose =()=>{
+      setSearch(false)
+    }
   return (
     <View style={styles.container}>
     <View style={styles.parent}>
-    <View style={styles.Profile}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back" size={25} style={styles.iconColor}/>
-        </TouchableOpacity>
-        <View style={styles.textParent}>
-      <Text style={styles.heading}>Choose Your Building</Text>
-      <Text style={styles.add}>Add your routine sitting location</Text>
+    {search ?
+                <View style={styles.searchParent}>
+                <TouchableOpacity onPress={onSearchClose}><AntDesignIcon name="closecircleo" size={20} style={styles.searchIcon}/></TouchableOpacity>
+                    <View style={styles.SearchBar}>
+                    <AntDesignIcon name="search1" size={25} style={styles.searchIcon1}/>
+                    <TextInput
+                    placeholder='Search...'
+                    placeholderTextColor='black'
+                    autoFocus
+                    style={styles.searchTextinput}
+                    />
+                    </View>
+                </View>
+              : 
+              <View style={styles.Profile}>
+                  <TouchableOpacity onPress={() => navigation.goBack()}>
+                  <Icon name="arrow-back" size={25} style={styles.iconColor}/>
+                  </TouchableOpacity>
+                  <View style={styles.textParent}>
+                <Text style={styles.heading}>Choose Your Building</Text>
+                <Text style={styles.add}>Add your routine sitting location</Text>
+                </View>
+                <TouchableOpacity onPress={onSearch} style={[styles.icon,{marginLeft:30}]}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
+                </View>
+}
+                  {/* <View>
+                  <TouchableOpacity style={styles.icon}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
+                  </View> */}
       </View>
-      </View>
-      <View>
-              <TouchableOpacity style={styles.icon}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
-        </View>
-      </View>
+
+    
+
+      
       <TouchableOpacity onPress={()=> navigation.navigate('selectWing')}>
                  <View style={styles.iconParent}>
                   <View style={styles.iconsubParent}>
@@ -116,5 +145,29 @@ const styles = StyleSheet.create({
       locationAddressText:{
         color:'black',
         fontSize:12
+      },
+      searchParent:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        marginBottom:10
+      },
+      SearchBar:{
+        flexDirection:'row',
+        backgroundColor:'#ffffff',
+        width:300,
+        borderRadius:30,
+        marginLeft:10,
+        alignItems:'center',
+      },
+      searchIcon1:{
+        color: 'black',
+        marginLeft:20
+      },
+      searchTextinput:{
+        width:250,
+        fontSize:16,
+        marginLeft:8,
+        color:'black'
       }
 })

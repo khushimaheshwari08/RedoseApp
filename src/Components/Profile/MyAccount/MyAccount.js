@@ -12,6 +12,10 @@ const MyAccount = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const [modalVisibleDelete, setModalVisibleDelete] = useState(false);
   const [modalVisibleLogout, setModalVisibleLogout] = useState(false);
+
+  const onYes =()=>{
+    navigation.navigate('slider')
+  }
   
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
@@ -85,7 +89,7 @@ const MyAccount = () => {
             onClose={() => setModalVisibleLogout(!modalVisibleLogout)} 
             title="Are you sure you want to logout?"
             heading="Alert!"
-              onYes={() => setModalVisibleLogout(!modalVisibleLogout)}
+              onYes={onYes}
               onNo={() => setModalVisibleLogout(!modalVisibleLogout)}
             />
             

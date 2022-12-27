@@ -5,6 +5,7 @@ import UserAvatar from 'react-native-user-avatar';
 import MyOffice from './MyOffice';
 import RedoseSpot from './RedoseSpot';
 import Icon from "react-native-vector-icons/MaterialIcons"
+import Lottie from 'lottie-react-native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -17,8 +18,8 @@ const HomeScreen = () => {
       {/* {route.params.name} */}
       </Text>
       <View style={styles.subParent}>
-        <TouchableOpacity onPress={()=> navigation.navigate('qrIconScreen')} >
-      <Icon name="qr-code-2" size={30} style={styles.Icon}/>
+        <TouchableOpacity onPress={()=> navigation.navigate('qrIconScreen')}  >
+        <Lottie style={styles.qrCode} source={require('../../assets/LottieData/qr-code.json')} autoPlay loop={false} />
       </TouchableOpacity>
       <TouchableOpacity onPress={()=> navigation.navigate('profileScreen',
       
@@ -56,7 +57,8 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     justifyContent:'space-between',
     alignItems:'center',
-    padding:12
+    padding:12,
+    paddingTop:2
   },
   subParent:{
     flexDirection:'row',
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
   },
   Icon:{
     color:'black',
-    marginRight:10
+    marginRight:10,
   },
   main: {
     marginLeft:30,
@@ -104,5 +106,9 @@ const styles = StyleSheet.create({
   text:{
     fontWeight:'bold',
     fontSize:15
+  },
+  qrCode:{
+    height:60,
+    backgroundColor:'white',
   }
 })

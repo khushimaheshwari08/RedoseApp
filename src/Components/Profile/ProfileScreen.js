@@ -51,7 +51,7 @@ const ProfileScreen = () => {
                     <Text style={styles.addCredit}>Add Credit</Text>
                 </TouchableOpacity>
               </View>
-              <View style={styles.teaBlock}>
+              {/* <View style={styles.teaBlock}>
               <Image
                     source={require('../../assets/icons/tea-red.png')}
                     style={{width: 50, height: 50,marginRight:25}}
@@ -60,7 +60,7 @@ const ProfileScreen = () => {
                  <Text style={styles.userName}>0</Text>
                 <Text style={styles.phnNo}>Free Credits Received so far</Text>
                 </View>
-                </View>
+                </View> */}
               <View style={styles.teaBlock}>
               <Image
                     source={require('../../assets/icons/tea-red.png')}

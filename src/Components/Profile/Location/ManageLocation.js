@@ -1,25 +1,49 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
-import { View ,Text, TouchableOpacity, StyleSheet, Image,Switch,} from 'react-native'
+import { View ,Text, TouchableOpacity, StyleSheet, Image,Switch, TextInput,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
+import AntDesignIcon from "react-native-vector-icons/AntDesign"
 
 const ManageLocation = () => {
     const navigation = useNavigation();
     const [isEnabled, setIsEnabled] = useState(true);
+    const [search, setSearch] = useState(false)
+
+    const onSearch =()=>{
+      setSearch(true)
+    }
+    const onSearchClose =()=>{
+      setSearch(false)
+    }
 
     // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <View style={styles.container}>
             <View style={styles.parent}>
-              <View style={styles.head}>
-                <View style={styles.Profile}>
-                  <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Icon name="arrow-back" size={25} style={styles.iconColor}/>
-                    </TouchableOpacity>
-                      <Text style={styles.heading}>Manage Location</Text>
+              {search ?
+                <View style={styles.searchParent}>
+                <TouchableOpacity onPress={onSearchClose}><AntDesignIcon name="closecircleo" size={20} style={styles.searchIcon}/></TouchableOpacity>
+                    <View style={styles.SearchBar}>
+                    <AntDesignIcon name="search1" size={25} style={styles.searchIcon1}/>
+                    <TextInput
+                    placeholder='Search...'
+                    placeholderTextColor='black'
+                    autoFocus
+                    style={styles.searchTextinput}
+                    />
+                    </View>
                 </View>
-                  <TouchableOpacity style={styles.icon}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
-              </View>
+              : 
+               <View style={styles.head}>
+               <View style={styles.Profile}>
+                 <TouchableOpacity onPress={() => navigation.goBack()}>
+                   <Icon name="arrow-back" size={25} style={styles.iconColor}/>
+                   </TouchableOpacity>
+                     <Text style={styles.heading}>Manage Location</Text>
+               </View>
+                 <TouchableOpacity style={styles.icon} onPress={onSearch}><Icon name="search" size={32} style={styles.searchIcon}/></TouchableOpacity>  
+             </View> 
+}
                       <TouchableOpacity style={styles.iconParent} onPress={()=> navigation.navigate('newLocation')}>
                         <View style={styles.iconsubParent}>
                           <View style={styles.icon}><Icon name="my-location" size={25} style={styles.searchIcon}/></View>  
@@ -156,5 +180,29 @@ const styles = StyleSheet.create({
       },
       switch:{
         marginLeft:110
+      },
+      searchParent:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'center',
+        marginBottom:20
+      },
+      SearchBar:{
+        flexDirection:'row',
+        backgroundColor:'#ffffff',
+        width:300,
+        borderRadius:30,
+        marginLeft:10,
+        alignItems:'center',
+      },
+      searchIcon1:{
+        color: 'black',
+        marginLeft:20
+      },
+      searchTextinput:{
+        width:250,
+        fontSize:16,
+        marginLeft:8,
+        color:'black'
       }
     })

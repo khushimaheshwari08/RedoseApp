@@ -80,12 +80,14 @@ const AddCredit = () => {
             
             {couponCode ? (
             <View style={[styles.iconParent, styles.forMargin]}>
+              <Lottie style={styles.ribbon} source={require('../../../assets/LottieData/ribbon.json')} autoPlay loop />
               <View style={styles.iconsubParent}>
-                <View style={styles.Coupon}>
-                  <Image
+                <View style={styles.RedCoupon}>
+                  {/* <Image
                     source={require('../../../assets/icons/coupon.png')}
                     style={{width: 20, height: 20}}
-                  />
+                  /> */}
+                  <Lottie source={require('../../../assets/LottieData/success.json')} autoPlay loop={false} />
                 </View>
                 <Text style={[styles.couponcodeApply, styles.forMarginLeft]}>
                   {promoCode}
@@ -282,6 +284,12 @@ const styles = StyleSheet.create({
             justifyContent:'center',
             borderRadius:20,
       },
+      RedCoupon:{
+             backgroundColor:'#ded9d9',
+            height:40,
+            width:40,
+            borderRadius:20,
+      },
       iconParent:{
         flexDirection:'row',
         alignItems:'center',  
@@ -415,5 +423,8 @@ const styles = StyleSheet.create({
         fontSize:15,
         fontWeight:'bold',
         color:'black'
+      },
+      ribbon:{
+        // width:10
       }
 })

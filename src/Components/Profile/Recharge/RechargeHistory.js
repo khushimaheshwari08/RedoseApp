@@ -32,7 +32,9 @@ const RechargeHistory = () => {
                   <Text style={styles.amount}>₹0</Text>
                 </View>
                 <View style={styles.iconbg}>
-                    <RupeeIcon name="rupee" size={40} style={styles.rupeeiconColor}/>
+                    {/* <RupeeIcon name="rupee" size={40} style={styles.rupeeiconColor}/> */}
+                    {/* <Lottie style={styles.barCode} source={require('../../assets/LottieData/barcode-mask.json')} autoPlay loop />  */}
+                    <Lottie  source={require('../../../assets/LottieData/rupee.json')} autoPlay loop={false} />
                 </View>
           </View>
             <Text style={styles.past}>PAST TRANSACTIONS</Text>
@@ -85,7 +87,8 @@ const RechargeHistory = () => {
                       <View style={styles.swipeTop}>
                         <View style={styles.swipeHeader}>
                             <View style={styles.iconbgsmall}>
-                            <RupeeIcon name="rupee" size={20} style={styles.rupeeiconColor}/>
+                            {/* <RupeeIcon name="rupee" size={20} style={styles.rupeeiconColor}/> */}
+                            <Lottie  source={require('../../../assets/LottieData/rupee.json')} autoPlay loop={false} />
                             </View>
                             <Text style={styles.textIndianRs}>Indian Rupee</Text>
                         </View>
