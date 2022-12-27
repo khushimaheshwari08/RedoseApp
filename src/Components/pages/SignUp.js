@@ -2,6 +2,7 @@ import {useRoute} from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+import AntDesignIcon from "react-native-vector-icons/AntDesign"
 import {
   Image,
   StyleSheet,
@@ -43,6 +44,7 @@ const SignUp = () => {
         Enter your information to create your account
       </Text>
       <View style={styles.SectionStyle}>
+        <AntDesignIcon name="user" size={27} style={styles.searchIcon} /> 
         <TextInput
           style={styles.inputStyle}
           placeholder="Name"
@@ -53,9 +55,8 @@ const SignUp = () => {
         />
       </View>
       <View style={styles.SectionStyle}>
-        <Text style={styles.inputStyle}>1234567890
-        {/* {route.params.phoneNo} */}
-        </Text>
+            <AntDesignIcon name="mobile1" size={25} style={styles.searchIcon}/>
+              <Text style={styles.inputStyle}>1234567890</Text>
       </View>
       <TouchableOpacity style={styles.SectionStyle}  
       disabled={name ? false: true}
@@ -95,9 +96,10 @@ const styles = StyleSheet.create({
     marginLeft: 35,
     marginRight: 35,
     margin: 10,
+    position:'relative'
   },
   inputStyle: {
-    color: 'black',
+    color: 'gray',
     paddingLeft: 18,
     paddingTop: 20,
     paddingBottom: 20,
@@ -137,5 +139,12 @@ const styles = StyleSheet.create({
   flashDes: {
     fontSize: 10,
     color:'gray'
-  }
+  },
+  searchIcon:{
+    position: 'absolute',
+    right:20,
+    top: 16,
+    color: '#ff2746',
+    zIndex:9
+  },
 });

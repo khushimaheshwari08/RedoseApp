@@ -6,7 +6,7 @@ import MyOffice from './MyOffice';
 import RedoseSpot from './RedoseSpot';
 import Icon from "react-native-vector-icons/MaterialIcons"
 import Lottie from 'lottie-react-native';
-
+import SwitchSelector from "react-native-switch-selector";
 const HomeScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
@@ -22,7 +22,6 @@ const HomeScreen = () => {
         <Lottie style={styles.qrCode} source={require('../../assets/LottieData/qr-code.json')} autoPlay loop={false} />
       </TouchableOpacity>
       <TouchableOpacity onPress={()=> navigation.navigate('profileScreen',
-      
         // {name:route.params.name,
         // phoneNo:route.params.phoneNo}
       )}>

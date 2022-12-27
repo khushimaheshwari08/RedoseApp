@@ -1,15 +1,28 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import Modal from 'react-native-modal'
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
 const MyOffice = () => {
     const navigation = useNavigation();
     const [isModalVisible, setIsModalVisible] = useState(false)
+    const flashMessage = useRef();
 
     const toggleModal = () =>{
     setIsModalVisible(!isModalVisible)
+  }
+  const onAlert =()=>{
+    flashMessage.current.showMessage({
+      message: "Alert",
+      description: "Please add credit to place order",
+      type: "danger",
+      style: styles.flashMessageAlert,
+      titleStyle: styles.flashTitle,
+      textStyle: styles.flashDes,
+      duration:	2000
+    });
   }
   return (
     <View style={styles.container}>
@@ -21,7 +34,8 @@ const MyOffice = () => {
                 </TouchableOpacity>
                 <Text style={styles.WingSubHeading}>Friends Avenue, Bodakdev, Ahmedabad,Gujarat 380054</Text>
           </View>
-        <TouchableOpacity>
+          <FlashMessage position="bottom" ref={flashMessage} /> 
+        <TouchableOpacity onPress={onAlert}>
         <Image
             source={require('../../assets/img/buzzer.png')}
             style={{width: 300, height: 300,marginTop:20,marginLeft:10}}
@@ -265,5 +279,29 @@ const styles = StyleSheet.create({
   locationAddressText:{
     color:'black',
     fontSize:12
+  },
+  flashTitle: {
+    fontWeight: 'bold',
+    fontSize: 13,
+    color:'black'
+  },
+  flashDes: {
+    fontSize: 10,
+    color:'gray'
+  },
+  flashMessageAlert:{
+    borderRadius: 9,
+    // opacity: 0.8,
+    shadowColor: 'gray',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation:1,
+    margin: 12,
+    backgroundColor:'white',
+    marginBottom:40,
+    borderLeftWidth:5,
+    borderLeftColor:'red',
+    height:65
   }
 })

@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View ,Keyboard, KeyboardAvoidingView} from 'react-native'
+import AntDesignIcon from "react-native-vector-icons/AntDesign"
 
 const Login = () => {
   const navigation = useNavigation();
@@ -18,6 +19,8 @@ const Login = () => {
                 <Text style={styles.loginText}>Login or Sign up to call Chhotu...!</Text>
                 <View style={styles.SectionStyle}>
                 <Text style={styles.mobileNo}>Mobile Number</Text>
+                <View>
+                <AntDesignIcon name="mobile1" size={25} style={[styles.searchIcon,{color: phoneNo.length === 10 ? 'green' : '#ff2746'}]}/>
                 <TextInput
                 style={[styles.inputStyle,{borderColor: phoneNo.length === 10 ? 'green' : '#ff2746'}]}
                 maxLength={10}
@@ -28,7 +31,8 @@ const Login = () => {
                 value={phoneNo}
                 onChangeText={phoneNo=> setPhoneNo(phoneNo)}
                 onSubmitEditing={phoneNo.length === 10 ? Keyboard.dismiss() : null}
-          />
+                />
+                </View>
           </View>
           <TouchableOpacity style={styles.SectionStyle} disabled={ phoneNo.length === 10  ? false: true} onPress={() => navigation.navigate('otp', 
           // {phoneNo: phoneNo}
@@ -85,6 +89,11 @@ const styles = StyleSheet.create({
         fontSize:15,
         fontWeight:'bold',
         paddingTop:18
-      }
+      },
+      searchIcon:{
+        position: 'absolute',
+        right:20,
+        top: 16,
+      },
      
 })

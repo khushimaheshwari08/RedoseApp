@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View,Switch, Image, ScrollView,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import Modal from 'react-native-modal'
 import CommonModal from '../../Common/Modal/Modal';
 import Lottie from 'lottie-react-native';
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
 const AutoSchedule = () => {
     const navigation = useNavigation();
@@ -13,6 +14,7 @@ const AutoSchedule = () => {
     const [week, setWeek] = useState('Monday')
     const [modalTimeSlot, setModalTimeSlot] = useState(false);
     const [radioState, setRadioState] = useState(false)
+    const flashMessage = useRef();
 
     const toggleModal = () =>{
         setIsModalVisible(!isModalVisible)
@@ -23,6 +25,19 @@ const AutoSchedule = () => {
         setRadioState(true)
         setModalTimeSlot(!modalTimeSlot)
       }
+      
+  const onAlert =()=>{
+    flashMessage.current.showMessage({
+      message: "Alert",
+      description: "Please add credit to place order",
+      type: "danger",
+      style: styles.flashMessageAlert,
+      titleStyle: styles.flashTitle,
+      textStyle: styles.flashDes,
+      duration:	2000
+    });
+    navigation.navigate('homeScreen')
+  }
 
   return (
     <View style={styles.container}>
@@ -34,6 +49,7 @@ const AutoSchedule = () => {
                         <Text style={styles.heading}>Auto Schedule</Text>
                     </View>
                 </View>
+                <FlashMessage position="bottom" ref={flashMessage} /> 
                 <ScrollView>
                     <View style={styles.parentWing}>
                         <TouchableOpacity style={styles.afteradddBuilding} onPress={toggleModal}>
@@ -54,6 +70,21 @@ const AutoSchedule = () => {
                             value={isEnabled}
                             style={{marginLeft:10}}
                     />
+                    {/* <SwitchSelector
+                        initial={0}
+                        // onPress={value => this.setState({ gender: value })}
+                        textColor={'white'} //'#7a44cf'
+                        selectedColor={'gray'}
+                        buttonColor={'gray'}
+                        borderColor={'black'}
+                        hasPadding
+                        options={[
+                          { label: "Feminino", value: "f", imageIcon: require('../../assets/img/bg.png') }, //images.feminino = require('./path_to/assets/img/feminino.png')
+                          { label: "Masculino", value: "m", imageIcon: require('../../assets/img/bg.png')} //images.masculino = require('./path_to/assets/img/masculino.png')
+                        ]}
+                        testID="gender-switch-selector"
+                        accessibilityLabel="gender-switch-selector"
+                      /> */}
                     </View>
                     <View style={styles.mainWeekView}>
                         <TouchableOpacity style={[styles.weekView,{borderWidth: week === 'Monday' ? 1.5: 0}]} onPress={()=> setWeek('Monday')}>
@@ -242,7 +273,7 @@ const AutoSchedule = () => {
                     </View>
                     <View style={{flex:1,justifyContent:'center',alignItems:'center',marginBottom:30,
                     marginTop:30}}>
-                                <TouchableOpacity style={styles.saveView} onPress={()=> navigation.navigate('homeScreen')} >                            
+                                <TouchableOpacity style={styles.saveView} onPress={onAlert} >                            
                                     <Text style={{color:'white',fontWeight:'bold'}}>Save</Text>
                                 </TouchableOpacity>
                     </View>
@@ -519,4 +550,28 @@ const styles = StyleSheet.create({
             borderRadius:20,
             marginLeft:5
       },
+      flashTitle: {
+        fontWeight: 'bold',
+        fontSize: 13,
+        color:'black'
+      },
+      flashDes: {
+        fontSize: 10,
+        color:'gray'
+      },
+      flashMessageAlert:{
+        borderRadius: 9,
+        // opacity: 0.8,
+        shadowColor: 'gray',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation:1,
+        margin: 12,
+        backgroundColor:'white',
+        marginBottom:40,
+        borderLeftWidth:5,
+        borderLeftColor:'red',
+        height:65
+      }
 })
