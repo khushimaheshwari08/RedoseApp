@@ -31,14 +31,25 @@ const HomeScreen = () => {
       </TouchableOpacity>     
       </View>
       </View>
-        <View style={styles.main}>
-          <TouchableOpacity style={[styles.parentOffice,{backgroundColor: toggle === 1 ? '#ff2746':'#d9d8d7'}]} onPress={()=>setToggle(1)}>
-          <Text style={[styles.text,{color: toggle === 1 ? '#ffffff':'black'}]}>My Office </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.parentRedoseSpot,{backgroundColor: toggle === 2 ? '#ff2746':'#d9d8d7'}]} onPress={()=>setToggle(2)}>
-          <Text style={[styles.text,{color: toggle === 2 ? '#ffffff':'black'}]}>Redose Spot </Text>
-          </TouchableOpacity>
-        </View>
+      <View style={{paddingHorizontal: 30}}>
+        <SwitchSelector
+          // selectedColor={'white'}
+          selectedTextStyle={{fontWeight: 'bold'}}
+          initial={0}
+          height={55}
+          backgroundColor={'#f2f2f2'}
+          valuePadding={5}
+          buttonColor={'#ff2746'}
+          borderWidth={0}
+          textStyle={{fontWeight: 'bold'}}
+          onPress={val => setToggle(val)}
+          hasPadding
+          options={[
+            {label: 'My Office', value: 1},
+            {label: 'Redose Spot', value: 2},
+          ]}
+        />
+      </View>     
         {toggle === 1 ? <MyOffice/> : null}
         {toggle === 2 ? <RedoseSpot/> : null}
       </View>

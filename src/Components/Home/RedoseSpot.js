@@ -10,6 +10,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {CameraScreen} from 'react-native-camera-kit';
+import Lottie from 'lottie-react-native';
 
 const RedoseSpot = () => { 
 const [qrvalue, setQrvalue] = useState('');
@@ -26,18 +27,15 @@ const onBarcodeScan = qrvalue => {
 
 return (
   <SafeAreaView style={{flex: 1, paddingTop:8}}>
-    <View style={{flex: 1}}>
+    <View style={{flex: 1,position:'relative'}}>
       <CameraScreen
-        showFrame={true}
         scanBarcode={true}
-        laserColor={'blue'}
-        frameColor={'white'}
-        colorForScannerFrame={'black'}
         onReadCode={event => onBarcodeScan(event.nativeEvent.codeStringValue)}
       />
-    </View>
+     
 
     <View style={styles.container}>
+      <Lottie style={styles.barCode} source={require('../../assets/LottieData/barcode-mask.json')} autoplay loop /></View>
       {qrvalue ? (
         <View
           style={{
@@ -96,4 +94,7 @@ const styles = StyleSheet.create({
     color: 'blue',
     paddingVertical: 20,
   },
+  barCode:{
+    marginTop:-150
+  }
 });

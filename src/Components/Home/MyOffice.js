@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       paddingLeft:12,
       paddingRight:12,
-      paddingTop:8
     },
     parent:{
         flexDirection:'row',

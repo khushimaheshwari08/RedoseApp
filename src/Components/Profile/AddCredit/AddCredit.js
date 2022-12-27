@@ -79,14 +79,12 @@ const AddCredit = () => {
             </View>
             
             {couponCode ? (
-            <View style={[styles.iconParent, styles.forMargin]}>
-              <Lottie style={styles.ribbon} source={require('../../../assets/LottieData/ribbon.json')} autoPlay loop />
+            <View style={[styles.iconParent, styles.forMargin,{overflow:'hidden'}]}>
+            <View style={{position:'absolute',}}>
+              <Lottie style={{width:400}} source={require('../../../assets/LottieData/ribbon.json')} autoPlay loop />
+              </View>
               <View style={styles.iconsubParent}>
                 <View style={styles.RedCoupon}>
-                  {/* <Image
-                    source={require('../../../assets/icons/coupon.png')}
-                    style={{width: 20, height: 20}}
-                  /> */}
                   <Lottie source={require('../../../assets/LottieData/success.json')} autoPlay loop={false} />
                 </View>
                 <Text style={[styles.couponcodeApply, styles.forMarginLeft]}>
@@ -301,7 +299,8 @@ const styles = StyleSheet.create({
         marginRight:10,
         padding:7,
         paddingLeft:10,
-        marginTop:10
+        marginTop:10,
+        position:'relative'
       },
       iconsubParent:{
         flexDirection:'row',
@@ -424,7 +423,4 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
         color:'black'
       },
-      ribbon:{
-        // width:10
-      }
 })
