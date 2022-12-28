@@ -88,15 +88,15 @@ const AutoSchedule = () => {
               Get regular tea at your desk without even calling anyone
             </Text>
           </View>
-          {/* <Switch
+          <Switch
             trackColor={{false: '#767577', true: 'red'}}
             thumbColor={isEnabled ? 'white' : '#f4f3f4'}
             onValueChange={toggleSwitch}
             value={isEnabled}
             style={{marginLeft: 10}}
-          /> */}
+          />
         
-          <SwitchSelector
+          {/* <SwitchSelector
                         initial={0}
                         // textColor={'white'} //'#7a44cf'
                         buttonColor={'red'}
@@ -110,7 +110,7 @@ const AutoSchedule = () => {
                         ]}
                         // imageStyle={{color:'red'}}
                         style={{width:50,height:40}}
-            />
+            /> */}
             
         </View>
         <View style={styles.mainWeekView}>
