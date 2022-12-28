@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useState } from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import UserAvatar from 'react-native-user-avatar';
 import MyOffice from './MyOffice';
@@ -11,6 +11,8 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const [toggle, setToggle] = useState(1);
+
+
   return (
     <View style={styles.container}>
       <View style={styles.parent}>
@@ -19,7 +21,7 @@ const HomeScreen = () => {
       </Text>
       <View style={styles.subParent}>
         <TouchableOpacity onPress={()=> navigation.navigate('qrIconScreen')}  >
-        <Lottie style={styles.qrCode} source={require('../../assets/LottieData/qr-code.json')} autoPlay loop={false} />
+        <Lottie style={styles.qrCode} source={require('../../assets/LottieData/qr-code.json')}  autoPlay={true} loop={false}  />
       </TouchableOpacity>
       <TouchableOpacity onPress={()=> navigation.navigate('profileScreen',
         // {name:route.params.name,

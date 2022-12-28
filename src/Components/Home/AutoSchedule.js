@@ -1,5 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useRef, useState} from 'react';
+import {useNavigation } from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Modal from 'react-native-modal';
 import CommonModal from '../../Common/Modal/Modal';
 import Lottie from 'lottie-react-native';
@@ -18,39 +19,58 @@ import FlashMessage, {
   hideMessage,
 } from 'react-native-flash-message';
 import SwitchSelector from "react-native-switch-selector";
+import {BlurView} from '@react-native-community/blur';
+
 
 const AutoSchedule = () => {
   const navigation = useNavigation();
+  const [blurType, setBlurType] = useState('light');
+  
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [toggle, setToggle] = useState(1);
+  const [toggle, setToggle] = useState(false);
   const [week, setWeek] = useState('Monday');
   const [modalTimeSlot, setModalTimeSlot] = useState(false);
   const [radioState, setRadioState] = useState(false);
+  const [loading, setLoading] = useState(false)
   const flashMessage = useRef();
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
   };
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const onYes = () => {
     setRadioState(true);
     setModalTimeSlot(!modalTimeSlot);
   };
+  
+  const SwitchHandler =()=>{
+    setToggle(!toggle)
+    setTimeout(() => {
+      setLoading(!loading)
+    }, 1000);
+  }
 
   const onAlert = () => {
-    flashMessage.current.showMessage({
-      message: 'Alert',
-      description: 'Please add credit to place order',
-      type: 'danger',
-      style: styles.flashMessageAlert,
-      titleStyle: styles.flashTitle,
-      textStyle: styles.flashDes,
-      duration: 2000,
-    });
+    // flashMessage.current.showMessage({
+    //   message: 'Alert',
+    //   description: 'Please add credit to place order',
+    //   type: 'danger',
+    //   style: styles.flashMessageAlert,
+    //   titleStyle: styles.flashTitle,
+    //   textStyle: styles.flashDes,
+    //   duration: 2000,
+    // });
     navigation.navigate('homeScreen');
   };
+
+  const options = [
+    { value: 0, customIcon: toggle === 0 ?<MaterialCommunityIcons name="briefcase-clock-outline" size={23} style={{color:'black'}}/>: null },
+    { value: 1, customIcon:  toggle === 1 ?<Image source={require('../../assets/icons/beach.png')} style={{ width: 28,height: 28}} />: null
+   },
+  ];
+  
+  // console.log(toggle)
+ 
 
   return (
     <View style={styles.container}>
@@ -83,36 +103,39 @@ const AutoSchedule = () => {
           </Text>
         </View>
         <View style={styles.regularTeaParent}>
-          <View style={{width: 270}}>
+          <View style={{width: 255}}>
             <Text style={{color: 'black', fontWeight: 'bold', fontSize: 15}}>
               Get regular tea at your desk without even calling anyone
             </Text>
           </View>
-          <Switch
-            trackColor={{false: '#767577', true: 'red'}}
-            thumbColor={isEnabled ? 'white' : '#f4f3f4'}
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-            style={{marginLeft: 10}}
-          />
-        
-          {/* <SwitchSelector
-                        initial={0}
-                        // textColor={'white'} //'#7a44cf'
-                        buttonColor={'red'}
-                        borderColor={'black'}
-                        backgroundColor={'black'}
-                        // borderWidth={2}
-                        onPress={val => setToggle(val)}
-                        options={[
-                          {value: 1, imageIcon: require('../../assets/img/bg.png')},
-                          {value: 2, imageIcon: require('../../assets/icons/beach.png')} 
-                        ]}
-                        // imageStyle={{color:'red'}}
-                        style={{width:50,height:40}}
-            /> */}
-            
+                  
+                  {/* <SwitchSelector
+                                  initial={0}
+                                  // textColor={'white'} //'#7a44cf'
+                                  // selectedColor={"#ffffff"}
+                                  buttonColor={'#ffffff'} 
+                                  backgroundColor={'#43464a'}
+                                  borderWidth={2}
+                                  onPress={val => setToggle(val)}
+                                  options={options}
+                                  height={28}
+                                  // imageStyle={{color:'red'}}
+                                  style={{width:65,borderColor:'black',borderWidth:2,borderRadius:25}}
+                      /> */}
+            <TouchableOpacity style={[styles.switch,{backgroundColor:toggle == false? '#404541' :'#d1cdcd',borderColor:toggle == false? 'black':'#ff2746'}]} onPress={SwitchHandler}>
+              {toggle == false ?
+              <TouchableOpacity style={{backgroundColor:'white',width:30,borderRadius:22,alignItems:'center',height:26}} onPress={SwitchHandler}>
+                  <MaterialCommunityIcons name="briefcase-clock-outline" size={20} style={{color:'black'}}/>
+              </TouchableOpacity>
+              :
+              <TouchableOpacity onPress={SwitchHandler}><Image source={require('../../assets/icons/beach.png')} style={{ width: 30,height: 25,left:30}} /></TouchableOpacity>
+              }
+            </TouchableOpacity>
+
         </View>
+        
+         
+
         <View style={styles.mainWeekView}>
           <TouchableOpacity
             style={[
@@ -244,6 +267,7 @@ const AutoSchedule = () => {
           onYes={onYes}
           onNo={() => setModalTimeSlot(!modalTimeSlot)}
         />
+        
         <View style={styles.timeMain}>
           <TouchableOpacity style={styles.timeParent}>
             <Icon name="access-time" size={30} style={styles.searchIcon} />
@@ -361,7 +385,7 @@ const AutoSchedule = () => {
             marginBottom: 30,
             marginTop: 30,
           }}>
-          <TouchableOpacity style={styles.saveView} onPress={onAlert}>
+          <TouchableOpacity style={styles.saveView}  onPress={onAlert}>
             <Text style={{color: 'white', fontWeight: 'bold'}}>Save</Text>
           </TouchableOpacity>
         </View>
@@ -405,6 +429,20 @@ const AutoSchedule = () => {
             </View>
           </View>
         </Modal>
+        {loading ?
+          <View>
+          <Lottie style={styles.barCode} source={require('../../assets/LottieData/airplane-around-the-world.json')} autoPlay={true} loop={false} />
+          </View>
+          :
+          null}
+     
+        {toggle == true ?
+        <BlurView
+        style={styles.blurViewStyle}
+        blurRadius={1}
+        blurType={blurType}
+      /> :
+       null}
       </ScrollView>
     </View>
   );
@@ -450,7 +488,7 @@ const styles = StyleSheet.create({
   },
   WingSubHeading: {
     color: 'black',
-    fontSize: 13,
+    fontSize: 12,
   },
   afteradddBuilding: {
     flexDirection: 'row',
@@ -478,7 +516,7 @@ const styles = StyleSheet.create({
   blurViewStyle: {
     position: 'absolute',
     left: 0,
-    top: 0,
+    top: 120,
     bottom: 0,
     right: 0,
   },
@@ -672,4 +710,13 @@ const styles = StyleSheet.create({
     borderLeftColor: 'red',
     height: 65,
   },
+  switch:{
+    height:30,
+    width:65,
+    borderRadius:20,
+    borderWidth:2
+  },
+  barCode:{
+    marginTop:-800,
+  }
 });

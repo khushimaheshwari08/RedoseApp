@@ -35,7 +35,8 @@ return (
      
 
     <View style={styles.container}>
-      <Lottie style={styles.barCode} source={require('../../assets/LottieData/barcode-mask.json')} autoplay loop /></View>
+      <Lottie style={styles.barCode} source={require('../../assets/LottieData/barcode-mask.json')} autoPlay={true} loop />
+      </View>
       {qrvalue ? (
         <View
           style={{
