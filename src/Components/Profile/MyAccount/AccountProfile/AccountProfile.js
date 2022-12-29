@@ -4,6 +4,7 @@ import { View ,Text, TouchableOpacity, StyleSheet, Image, TextInput,} from 'reac
 import Icon from "react-native-vector-icons/MaterialIcons"
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import FeatherIcon from "react-native-vector-icons/Feather"
+import { alertTypeStyle } from '../../../../utils/constants';
 
 
 const AccountProfile = () => {
@@ -14,15 +15,11 @@ const AccountProfile = () => {
    const saveProfile=()=>{
         setChange(true)
         if(change == false){
-            flashMessage.current.showMessage({
-          message: "Success",
-          description: "Profile updated successfully",
-          type: "success",
-          style: styles.flashMessage,
-          titleStyle: styles.flashTitle,
-          textStyle: styles.flashDes,
-          duration:	2000
-        });
+        showMessage({
+          message:'Success',
+          description:'Profile updated successfully',
+          style:alertTypeStyle.success,
+        })
     }
 }
   
@@ -169,29 +166,5 @@ const styles = StyleSheet.create({
         borderRadius:5,
         fontSize:13,
         padding:7
-      }, 
-      flashMessage: {
-        borderRadius: 9,
-        // opacity: 0.8,
-        shadowColor: 'gray',
-        shadowOffset: {width: -2, height: 4},
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation:1,
-        margin: 12,
-        backgroundColor:'white',
-        marginBottom:40,
-        borderLeftWidth:5,
-        borderLeftColor:'green',
-        height:65
       },
-      flashTitle: {
-        fontWeight: 'bold',
-        fontSize: 13,
-        color:'black'
-      },
-      flashDes: {
-        fontSize: 10,
-        color:'gray'
-      }
 })

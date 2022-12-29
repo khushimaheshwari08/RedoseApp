@@ -1,4 +1,4 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
+import {  useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react'
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import UserAvatar from 'react-native-user-avatar';
@@ -10,6 +10,7 @@ import MyBuddiesIcon from 'react-native-vector-icons/Fontisto';
 const ProfileScreen = () => {
     const route = useRoute();
     const navigation = useNavigation();
+    
   return (
     <View style={styles.container}>
             <View style={styles.parent}>

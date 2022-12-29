@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/MaterialIcons"
 import {BlurView} from '@react-native-community/blur';
 
 const CommonModal = ({open,onClose,title,onYes,onNo,heading}) => {
-  const [blurType, setBlurType] = useState('light');
+  const [blurType, setBlurType] = useState('dark');
   return (
     <Modal
       animationType="slide"

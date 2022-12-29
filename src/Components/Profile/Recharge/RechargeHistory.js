@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useRef, useState } from 'react'
 import { View ,Text, TouchableOpacity, StyleSheet, Image, TextInput,} from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 import RupeeIcon from "react-native-vector-icons/FontAwesome"
@@ -11,6 +11,15 @@ import {BlurView} from '@react-native-community/blur';
 const RechargeHistory = () => {
   const navigation = useNavigation();
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const animation = useRef();
+
+  useFocusEffect(
+    useCallback(() => {
+     if(animation.current !== null && animation.current !== undefined){
+      animation.current.play(5,82);
+     }
+    }, [])
+  );
 
   const toggleModal = () =>{
     setIsModalVisible(!isModalVisible)
@@ -34,7 +43,7 @@ const RechargeHistory = () => {
                 <View style={styles.iconbg}>
                     {/* <RupeeIcon name="rupee" size={40} style={styles.rupeeiconColor}/> */}
                     {/* <Lottie style={styles.barCode} source={require('../../assets/LottieData/barcode-mask.json')} autoPlay loop />  */}
-                    <Lottie  source={require('../../../assets/LottieData/rupee.json')} autoPlay loop={false} />
+                    <Lottie  source={require('../../../assets/LottieData/rupee.json')} ref={animation} autoPlay loop={false} />
                 </View>
           </View>
             <Text style={styles.past}>PAST TRANSACTIONS</Text>

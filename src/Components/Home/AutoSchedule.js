@@ -1,4 +1,4 @@
-import {useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
 import {
   StyleSheet,
@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Modal from 'react-native-modal';
 import CommonModal from '../../Common/Modal/Modal';
 import Lottie from 'lottie-react-native';
@@ -18,21 +18,37 @@ import FlashMessage, {
   showMessage,
   hideMessage,
 } from 'react-native-flash-message';
-import SwitchSelector from "react-native-switch-selector";
+import SwitchSelector from 'react-native-switch-selector';
 import {BlurView} from '@react-native-community/blur';
-
+import {alertTypeStyle} from '../../utils/constants';
 
 const AutoSchedule = () => {
   const navigation = useNavigation();
   const [blurType, setBlurType] = useState('light');
-  
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const [week, setWeek] = useState('Monday');
+  const [week, setWeek] = useState('');
   const [modalTimeSlot, setModalTimeSlot] = useState(false);
   const [radioState, setRadioState] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const flashMessage = useRef();
+
+  const weekday = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const d = new Date();
+  let day = weekday[d.getDay()];
+
+  useEffect(() => {
+    setWeek(day);
+  }, []);
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -42,35 +58,47 @@ const AutoSchedule = () => {
     setRadioState(true);
     setModalTimeSlot(!modalTimeSlot);
   };
-  
-  const SwitchHandler =()=>{
-    setToggle(!toggle)
+
+  const SwitchHandler = () => {
+    setToggle(!toggle);
+    setLoading(true);
     setTimeout(() => {
-      setLoading(!loading)
-    }, 1000);
-  }
+      setLoading(false);
+    }, 3000);
+  };
 
   const onAlert = () => {
-    // flashMessage.current.showMessage({
-    //   message: 'Alert',
-    //   description: 'Please add credit to place order',
-    //   type: 'danger',
-    //   style: styles.flashMessageAlert,
-    //   titleStyle: styles.flashTitle,
-    //   textStyle: styles.flashDes,
-    //   duration: 2000,
-    // });
+    showMessage({
+      message: 'Success',
+      description: 'Updated Successfully',
+      style: alertTypeStyle.success,
+    });
     navigation.navigate('homeScreen');
   };
 
   const options = [
-    { value: 0, customIcon: toggle === 0 ?<MaterialCommunityIcons name="briefcase-clock-outline" size={23} style={{color:'black'}}/>: null },
-    { value: 1, customIcon:  toggle === 1 ?<Image source={require('../../assets/icons/beach.png')} style={{ width: 28,height: 28}} />: null
-   },
+    {
+      value: 0,
+      customIcon:
+        toggle === 0 ? (
+          <MaterialCommunityIcons
+            name="briefcase-clock-outline"
+            size={23}
+            style={{color: 'black'}}
+          />
+        ) : null,
+    },
+    {
+      value: 1,
+      customIcon:
+        toggle === 1 ? (
+          <Image
+            source={require('../../assets/icons/beach.png')}
+            style={{width: 28, height: 28}}
+          />
+        ) : null,
+    },
   ];
-  
-  // console.log(toggle)
- 
 
   return (
     <View style={styles.container}>
@@ -82,7 +110,6 @@ const AutoSchedule = () => {
           <Text style={styles.heading}>Auto Schedule</Text>
         </View>
       </View>
-      <FlashMessage position="bottom" ref={flashMessage} />
       <ScrollView>
         <View style={styles.parentWing}>
           <TouchableOpacity
@@ -108,33 +135,42 @@ const AutoSchedule = () => {
               Get regular tea at your desk without even calling anyone
             </Text>
           </View>
-                  
-                  {/* <SwitchSelector
-                                  initial={0}
-                                  // textColor={'white'} //'#7a44cf'
-                                  // selectedColor={"#ffffff"}
-                                  buttonColor={'#ffffff'} 
-                                  backgroundColor={'#43464a'}
-                                  borderWidth={2}
-                                  onPress={val => setToggle(val)}
-                                  options={options}
-                                  height={28}
-                                  // imageStyle={{color:'red'}}
-                                  style={{width:65,borderColor:'black',borderWidth:2,borderRadius:25}}
-                      /> */}
-            <TouchableOpacity style={[styles.switch,{backgroundColor:toggle == false? '#404541' :'#d1cdcd',borderColor:toggle == false? 'black':'#ff2746'}]} onPress={SwitchHandler}>
-              {toggle == false ?
-              <TouchableOpacity style={{backgroundColor:'white',width:30,borderRadius:22,alignItems:'center',height:26}} onPress={SwitchHandler}>
-                  <MaterialCommunityIcons name="briefcase-clock-outline" size={20} style={{color:'black'}}/>
-              </TouchableOpacity>
-              :
-              <TouchableOpacity onPress={SwitchHandler}><Image source={require('../../assets/icons/beach.png')} style={{ width: 30,height: 25,left:30}} /></TouchableOpacity>
-              }
-            </TouchableOpacity>
 
+          <TouchableOpacity
+            style={[
+              styles.switch,
+              {
+                backgroundColor: toggle == false ? '#404541' : '#d1cdcd',
+                borderColor: toggle == false ? 'black' : '#ff2746',
+              },
+            ]}
+            onPress={SwitchHandler}>
+            {toggle == false ? (
+              <TouchableOpacity
+                onPress={SwitchHandler}
+                style={{
+                  backgroundColor: 'white',
+                  width: 30,
+                  borderRadius: 22,
+                  alignItems: 'center',
+                  height: 26,
+                }}>
+                <MaterialCommunityIcons
+                  name="briefcase-clock-outline"
+                  size={20}
+                  style={{color: 'black'}}
+                />
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={SwitchHandler}>
+                <Image
+                  source={require('../../assets/icons/beach.png')}
+                  style={{width: 30, height: 25, left: 30}}
+                />
+              </TouchableOpacity>
+            )}
+          </TouchableOpacity>
         </View>
-        
-         
 
         <View style={styles.mainWeekView}>
           <TouchableOpacity
@@ -267,7 +303,7 @@ const AutoSchedule = () => {
           onYes={onYes}
           onNo={() => setModalTimeSlot(!modalTimeSlot)}
         />
-        
+
         <View style={styles.timeMain}>
           <TouchableOpacity style={styles.timeParent}>
             <Icon name="access-time" size={30} style={styles.searchIcon} />
@@ -385,7 +421,7 @@ const AutoSchedule = () => {
             marginBottom: 30,
             marginTop: 30,
           }}>
-          <TouchableOpacity style={styles.saveView}  onPress={onAlert}>
+          <TouchableOpacity style={styles.saveView} onPress={onAlert} >
             <Text style={{color: 'white', fontWeight: 'bold'}}>Save</Text>
           </TouchableOpacity>
         </View>
@@ -429,20 +465,24 @@ const AutoSchedule = () => {
             </View>
           </View>
         </Modal>
-        {loading ?
+        {toggle || loading ? (
           <View>
-          <Lottie style={styles.barCode} source={require('../../assets/LottieData/airplane-around-the-world.json')} autoPlay={true} loop={false} />
+            <Lottie
+              style={styles.barCode}
+              source={require('../../assets/LottieData/airplane-around-the-world.json')}
+              autoPlay={true}
+              loop={false}
+            />
           </View>
-          :
-          null}
-     
-        {toggle == true ?
-        <BlurView
-        style={styles.blurViewStyle}
-        blurRadius={1}
-        blurType={blurType}
-      /> :
-       null}
+        ) : null}
+
+        {toggle  ? (
+          <BlurView
+            style={styles.blurViewStyle}
+            blurRadius={1}
+            blurType={blurType}
+          />
+        ) : null}
       </ScrollView>
     </View>
   );
@@ -710,13 +750,13 @@ const styles = StyleSheet.create({
     borderLeftColor: 'red',
     height: 65,
   },
-  switch:{
-    height:30,
-    width:65,
-    borderRadius:20,
-    borderWidth:2
+  switch: {
+    height: 30,
+    width: 65,
+    borderRadius: 20,
+    borderWidth: 2,
   },
-  barCode:{
-    marginTop:-800,
-  }
+  barCode: {
+    marginTop: -800,
+  },
 });

@@ -2,6 +2,7 @@ import React, { useState ,useRef,useEffect} from 'react'
 import { Text, View,StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+import { alertTypeStyle } from '../../utils/constants';
 
 
 const OTPPage = () => {
@@ -21,33 +22,22 @@ const OTPPage = () => {
     let optNum = firstInputNum + secondInputNum + thirdInputNum + fourInputNum;
     if(optNum.length !== 4){
       showMessage({
-        message: "Alert",
-        description: "Please enter otp",
-        type: "danger",
-        style: styles.flashMessageAlert,
-        titleStyle: styles.flashTitle,
-        textStyle: styles.flashDes,
-        duration:	2000
-      });
+        message:'Alert',
+        description:'Please enter otp',
+        style:alertTypeStyle.error,
+      })
       return;
     }
     setMessage(true)
       navigation.replace('signUp')
       // { phoneNo:route.params.phoneNo}
-      
+      showMessage({
+        message:'Success',
+        description:'OTP verified successfully',
+        style:alertTypeStyle.success,
+      })
    
   }
-  useEffect(() => {
-    showMessage({
-      message: "Success",
-      description: "OTP sent successfully",
-      type: "success",
-      style: styles.flashMessage,
-      titleStyle: styles.flashTitle,
-      textStyle: styles.flashDes,
-      duration:	2000
-    });
-  }, [])
   return (
   <View style={styles.container}>
     <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -58,7 +48,7 @@ const OTPPage = () => {
             </TouchableOpacity>
     <Text style={styles.verify}>Verify OTP</Text>
      <Text style={[styles.mobileNo,styles.mobileNoText]}>Please enter OTP sent on your mobile number</Text>
-      <FlashMessage position="bottom" /> 
+     
       <Text  style={styles.mobileNo}>1234567890
       {/* {route.params.phoneNo} */}
       </Text>
@@ -197,43 +187,4 @@ const styles = StyleSheet.create({
       flexDirection:'row',
       justifyContent:'center',
     },
-    flashMessage: {
-      borderRadius: 9,
-      // opacity: 0.8,
-      shadowColor: 'gray',
-      shadowOffset: {width: -2, height: 4},
-      shadowOpacity: 0.2,
-      shadowRadius: 3,
-      elevation:1,
-      margin: 12,
-      backgroundColor:'white',
-      marginBottom:40,
-      borderLeftWidth:5,
-      borderLeftColor:'green',
-      height:65
-    },
-    flashTitle: {
-      fontWeight: 'bold',
-      fontSize: 13,
-      color:'black'
-    },
-    flashDes: {
-      fontSize: 10,
-      color:'gray'
-    },
-    flashMessageAlert:{
-      borderRadius: 9,
-      // opacity: 0.8,
-      shadowColor: 'gray',
-      shadowOffset: {width: -2, height: 4},
-      shadowOpacity: 0.2,
-      shadowRadius: 3,
-      elevation:1,
-      margin: 12,
-      backgroundColor:'white',
-      marginBottom:40,
-      borderLeftWidth:5,
-      borderLeftColor:'red',
-      height:65
-    }
   })

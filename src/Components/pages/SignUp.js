@@ -1,7 +1,6 @@
 import {useRoute} from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import AntDesignIcon from "react-native-vector-icons/AntDesign"
 import {
   Image,
@@ -16,19 +15,7 @@ const SignUp = () => {
   const navigation = useNavigation();
   const [name, setName] = useState('')
   const route = useRoute();
-  const flashMessage = useRef();
 
-    useEffect(() => {
-      flashMessage.current.showMessage({
-        message: "Success",
-        description: "OTP verified successfully",
-        type: "success",
-        style: styles.flashMessage,
-        titleStyle: styles.flashTitle,
-        textStyle: styles.flashDes,
-        duration:	2000
-      });
-    }, [])
 
   return (
     <View style={styles.container}>
@@ -39,7 +26,6 @@ const SignUp = () => {
             />
             </TouchableOpacity>
       <Text style={styles.signUp}>Sign Up</Text>
-      <FlashMessage position="bottom" ref={flashMessage} /> 
       <Text style={styles.textInfo}>
         Enter your information to create your account
       </Text>
@@ -115,30 +101,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 18,
     backgroundColor: '#ff2746',
-  },
-  flashMessage: {
-    borderRadius: 9,
-    // opacity: 0.8,
-    shadowColor: 'gray',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-    elevation:1,
-    margin: 12,
-    backgroundColor:'white',
-    marginBottom:40,
-    borderLeftWidth:5,
-    borderLeftColor:'green',
-    height:65
-  },
-  flashTitle: {
-    fontWeight: 'bold',
-    fontSize: 13,
-    color:'black'
-  },
-  flashDes: {
-    fontSize: 10,
-    color:'gray'
   },
   searchIcon:{
     position: 'absolute',
