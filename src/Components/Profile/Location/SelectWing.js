@@ -26,7 +26,13 @@ const SelectWing = () => {
         <View style={styles.WingSelect}><Text style={[styles.WingSelectText,{marginTop:23}]}>B</Text></View>
         </TouchableOpacity>
         <TouchableOpacity>
+        <View style={styles.WingSelect}><Text style={[styles.WingSelectText,{marginTop:23}]}>C</Text></View>
+        </TouchableOpacity>
+        <TouchableOpacity>
         <View style={styles.WingSelect}><Text style={styles.WingSelectText}>CHAI RMAN CABIN</Text></View>
+        </TouchableOpacity>
+        <TouchableOpacity>
+        <View style={styles.WingSelect}><Text style={[styles.WingSelectText,{marginTop:23}]}>C</Text></View>
         </TouchableOpacity>
         </View>
         </View>
@@ -75,14 +81,15 @@ const styles = StyleSheet.create({
     },
     WingSelect:{
         backgroundColor:'#f2f2f2',
-        height:95,
-        width:95,
+        height:90,
+        width:90,
         marginTop:20,
         borderRadius:5
     },
     WingSelectParent:{
         flexDirection:'row',
-        justifyContent:'space-between',
+        flexWrap:'wrap',
+        justifyContent:'space-evenly',
     },
     WingSelectText:{
         color:'black',

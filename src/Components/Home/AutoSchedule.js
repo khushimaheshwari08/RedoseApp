@@ -32,7 +32,12 @@ const AutoSchedule = () => {
   const [modalTimeSlot, setModalTimeSlot] = useState(false);
   const [radioState, setRadioState] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
   const flashMessage = useRef();
+
+  const handleClick = () => {
+    setIsSelected(current => !current);
+  };
 
   const weekday = [
     'Sunday',
@@ -286,7 +291,7 @@ const AutoSchedule = () => {
           {radioState ? (
             <View style={styles.RedCoupon}>
               <Lottie
-                source={require('../../assets/LottieData/success.json')}
+                source={require('../../assets/LottieData/successcolor.json')}
                 autoPlay
                 loop={false}
               />
@@ -298,20 +303,20 @@ const AutoSchedule = () => {
         <CommonModal
           open={modalTimeSlot}
           onClose={() => setModalTimeSlot(!modalTimeSlot)}
-          title="You want to apply monday timeslot to other days also!"
+          title={`You want to apply ${week} timeslot to other days also!`}
           heading="Are you sure"
           onYes={onYes}
           onNo={() => setModalTimeSlot(!modalTimeSlot)}
         />
 
         <View style={styles.timeMain}>
-          <TouchableOpacity style={styles.timeParent}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>09:00 AM to 09:30 AM</Text>
+          <TouchableOpacity style={[styles.timeParent,{backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},]} onPress={handleClick}>
+            <Icon name="access-time" size={30} style={[styles.searchIcon, {color: isSelected ? 'white' : '#ff2746'}]}/>
+            <Text style={[styles.timeText,{color: isSelected ? 'white' : 'black'}]}> 09:00 AM to 09:30 AM</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forml]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>09:30 AM to 10:00 AM</Text>
+          <TouchableOpacity style={[styles.timeParent, styles.forml,,{backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},]} onPress={handleClick}>
+            <Icon name="access-time" size={30} style={[styles.searchIcon, {color: isSelected ? 'white' : '#ff2746'}]} />
+            <Text style={[styles.timeText,{color: isSelected ? 'white' : 'black'}]}>09:30 AM to 10:00 AM</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
             <Icon name="access-time" size={30} style={styles.searchIcon} />
@@ -418,10 +423,10 @@ const AutoSchedule = () => {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: 30,
+            marginBottom: 35,
             marginTop: 30,
           }}>
-          <TouchableOpacity style={styles.saveView} onPress={onAlert} >
+          <TouchableOpacity style={styles.saveView} onPress={onAlert}>
             <Text style={{color: 'white', fontWeight: 'bold'}}>Save</Text>
           </TouchableOpacity>
         </View>
@@ -465,18 +470,18 @@ const AutoSchedule = () => {
             </View>
           </View>
         </Modal>
-        {toggle || loading ? (
+        {loading ? (
           <View>
             <Lottie
               style={styles.barCode}
-              source={require('../../assets/LottieData/airplane-around-the-world.json')}
+              source={require('../../assets/LottieData/airplanearoundworldcolor.json')}
               autoPlay={true}
               loop={false}
             />
           </View>
         ) : null}
 
-        {toggle  ? (
+        {toggle || loading ? (
           <BlurView
             style={styles.blurViewStyle}
             blurRadius={1}
@@ -718,9 +723,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 120,
     borderRadius: 20,
+    elevation: 10,
+    shadowColor: '#171717',
   },
   RedCoupon: {
-    backgroundColor: '#ded9d9',
+    backgroundColor: '#E5B4B4',
     height: 30,
     width: 30,
     borderRadius: 20,
@@ -758,5 +765,6 @@ const styles = StyleSheet.create({
   },
   barCode: {
     marginTop: -800,
+    zIndex: 999,
   },
 });

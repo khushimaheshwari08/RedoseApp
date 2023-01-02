@@ -63,7 +63,7 @@ const MyAccount = () => {
             <CommonModal open={modalVisibleDelete} 
             onClose={() => setModalVisibleDelete(!modalVisibleDelete)} 
             title="Are you sure you want to delete your account?"
-            heading="Alert!"
+            heading="Alert"
               onYes={() => setModalVisibleDelete(!modalVisibleDelete)}
               onNo={() => setModalVisibleDelete(!modalVisibleDelete)}
             />
@@ -88,7 +88,7 @@ const MyAccount = () => {
             <CommonModal open={modalVisibleLogout} 
             onClose={() => setModalVisibleLogout(!modalVisibleLogout)} 
             title="Are you sure you want to logout?"
-            heading="Alert!"
+            heading="Alert"
               onYes={onYes}
               onNo={() => setModalVisibleLogout(!modalVisibleLogout)}
             />
@@ -206,24 +206,5 @@ const styles = StyleSheet.create({
       color: '#ff2746',
       fontWeight: "bold",
       textAlign: "center"
-    },
-    modalText: {
-      marginBottom: 15,
-      textAlign: "center",
-      color: 'black',
-      marginTop:10
-    },
-    modalTextAlert:{
-      textAlign: "center",
-      color: '#ff2746',
-      fontSize:25,
-      fontWeight:'bold'
-    },
-    closeArrow:{
-      color:'black',
-    },
-    closeArrowParent:{
-      alignItems:'flex-end',
-      justifyContent:'flex-end',
     },
   })

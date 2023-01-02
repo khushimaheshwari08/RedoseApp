@@ -6657,6 +6657,11 @@ rimraf@~2.6.2:
   dependencies:
     glob "^7.1.3"
 
+rn-otp-timer@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/rn-otp-timer/-/rn-otp-timer-1.0.1.tgz"
+  integrity sha512-a/deJtYBSdO3RqU7lGr37eQx+xl1Ssqiz+EWTp/gAAYhVdpwLtaRgbKL6Oq4AY4KYR2eeuRtf9/CP+oVTR/GdQ==
+
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.npmjs.org/rsvp/-/rsvp-4.8.5.tgz"

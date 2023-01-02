@@ -48,7 +48,7 @@ const MyOffice = () => {
       <TouchableOpacity onPress={onAlert}>
         <Image
           source={require('../../assets/img/buzzer.png')}
-          style={{width: 300, height: 300, marginTop: 20, marginLeft: 10}}
+          style={{width: 290, height: 280, marginTop: 30, marginLeft: 20}}
         />
       </TouchableOpacity>
       <Text style={styles.tea}>Love tea everyday?</Text>
@@ -82,9 +82,11 @@ const MyOffice = () => {
             <View style={styles.iconsubParent}>
               <View style={styles.RedCoupon}>
                 <Lottie
-                  source={require('../../assets/LottieData/success.json')}
+                  source={require('../../assets/LottieData/successcolor.json')}
                   autoPlay
                   loop={true}
+                  // duration={4000}
+                  speed={0.9}
                 />
               </View>
               <Text style={styles.profileSettings}>Binori (Dummy)</Text>
@@ -180,7 +182,9 @@ const styles = StyleSheet.create({
     borderColor: '#ff2746',
   },
   parentWing: {
-    margin: 15,
+    marginTop: 10,
+    marginLeft: 15,
+    marginRight: 15,
   },
   WingHeading: {
     color: 'black',
@@ -304,7 +308,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   RedCoupon: {
-    backgroundColor: '#ded9d9',
+    // backgroundColor: '#ded9d9',
     height: 20,
     width: 20,
     borderRadius: 20,

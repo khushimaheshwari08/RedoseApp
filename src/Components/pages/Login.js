@@ -19,6 +19,24 @@ import {alertTypeStyle} from '../../utils/constants';
 const Login = () => {
   const navigation = useNavigation();
   const [phoneNo, setPhoneNo] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const onOTPscreen = () => {
+    setLoading(true);
+    setTimeout(() => {
+      navigation.navigate(
+        'otp',
+        showMessage({
+          message: 'Success',
+          description: 'OTP sent successfully',
+          style: alertTypeStyle.success,
+        }),
+      );
+      setLoading(false)
+    }, 1000);
+  
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -42,10 +60,14 @@ const Login = () => {
             ]}
           />
           <TextInput
-          //  elevation={5}
             style={[
               styles.inputStyle,
-              {borderColor: phoneNo.length === 10 ? 'green' : '#ff2746'},
+              {
+                borderColor: phoneNo.length === 10 ? 'green' : '#ff2746',
+                elevation: phoneNo.length === 10 ? 5 : 0,
+                shadowColor: 'green',
+                backgroundColor: '#f2f2f2',
+              },
             ]}
             maxLength={10}
             placeholder="+91 0000000000"
@@ -61,23 +83,24 @@ const Login = () => {
       <TouchableOpacity
         style={styles.SectionStyle}
         disabled={phoneNo.length === 10 ? false : true}
-        onPress={() =>
-          navigation.navigate(
-            'otp',
-            showMessage({
-              message: 'Success',
-              description: 'OTP sent successfully',
-              style: alertTypeStyle.success,
-            }),
-          )
-        }>
-        <Text
+        onPress={() => onOTPscreen()}>
+        <View
           style={[
             styles.otp,
-            {backgroundColor: phoneNo.length === 10 ? '#ff2746' : '#f7656c'},
+            {
+              backgroundColor: phoneNo.length === 10 ? '#ff2746' : '#f7656c',
+              elevation: phoneNo.length === 10 ? 15 : 0,
+              shadowColor: '#171717',
+            },
           ]}>
-          Get OTP
-        </Text>
+          <Text style={styles.textStyle}>
+            {loading == true ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              ' Get OTP'
+            )}
+          </Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
@@ -102,14 +125,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 35,
     marginRight: 35,
-    margin: 10, 
-    elevation: 4,
+    margin: 10,
   },
   mobileNo: {
     color: 'gray',
     top: 22,
     paddingLeft: 20,
     fontSize: 12,
+    zIndex: 9,
   },
   inputStyle: {
     color: 'black',
@@ -126,17 +149,20 @@ const styles = StyleSheet.create({
     // }
   },
   otp: {
-    color: 'white',
     height: 60,
-    textAlign: 'center',
     borderRadius: 30,
-    fontSize: 15,
-    fontWeight: 'bold',
     paddingTop: 18,
   },
   searchIcon: {
     position: 'absolute',
     right: 20,
     top: 16,
+    zIndex: 9,
+  },
+  textStyle: {
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'white',
   },
 });

@@ -59,7 +59,7 @@ const AddCredit = () => {
           </View>
         </View>
         <ScrollView>
-          <View style={styles.incomeBlock}>
+          <TouchableOpacity style={styles.incomeBlock} onPress={() => navigation.navigate('rechargeHistory')}>
             <Image
               source={require('../../../assets/icons/income.png')}
               style={{width: 50, height: 50, marginRight: 30}}
@@ -68,7 +68,7 @@ const AddCredit = () => {
               <Text style={styles.userName}>₹0</Text>
               <Text style={styles.phnNo}>Available Credits</Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <Text style={styles.addCreditText}>Add Credits</Text>
 
           <View style={styles.rupeeHead}>
@@ -148,7 +148,7 @@ const AddCredit = () => {
               <View style={styles.iconsubParent}>
                 <View style={styles.RedCoupon}>
                   <Lottie
-                    source={require('../../../assets/LottieData/success.json')}
+                    source={require('../../../assets/LottieData/successcolor.json')}
                     autoPlay
                     loop={false}
                   />
@@ -338,9 +338,6 @@ const styles = StyleSheet.create({
   iconColor: {
     color: '#4a4949',
   },
-  iconColor: {
-    color: '#4a4949',
-  },
   addCreditText: {
     color: 'black',
     fontSize: 30,
@@ -374,9 +371,9 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   RedCoupon: {
-    backgroundColor: '#ded9d9',
-    height: 40,
-    width: 40,
+    backgroundColor: '#E5B4B4',
+    height: 30,
+    width: 30,
     borderRadius: 20,
   },
   iconParent: {
@@ -436,6 +433,7 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: 'bold',
     fontSize: 15,
+    color:'white'
   },
   fontRupee: {
     fontSize: 18,

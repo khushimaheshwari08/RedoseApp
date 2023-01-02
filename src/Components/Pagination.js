@@ -28,15 +28,15 @@ const Pagination = ({data, scrollX, index}) => {
         });
 
         return (
-            <>
-          <Animated.View
-            key={idx.toString()}
-            style={[
-              styles.dot,
-              {width: dotWidth, backgroundColor},
-              // idx === index && styles.dotActive,
-            ]}
-          />
+          <>
+            <Animated.View
+              key={idx.toString()}
+              style={[
+                styles.dot,
+                {width: dotWidth, backgroundColor},
+                // idx === index && styles.dotActive,
+              ]}
+            />
           </>
         );
       })}
