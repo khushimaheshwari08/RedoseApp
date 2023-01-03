@@ -49,7 +49,7 @@ const ProfileScreen = () => {
           />
         </View>
       </View>
-      <ScrollView style={{marginTop: 5}}>
+      <ScrollView style={{marginTop: 5, paddingLeft: 9}}>
         <View style={styles.incomeBlock}>
           <Image
             source={require('../../assets/icons/income.png')}
@@ -85,6 +85,7 @@ const ProfileScreen = () => {
             <Text style={styles.phnNo}>Free Credits Received so far</Text>
           </View>
         </View>
+        <View style={[styles.divider2,styles.forMargin]}></View>
         <TouchableOpacity onPress={() => navigation.navigate('manageLocation')}>
           <View style={[styles.iconParent, styles.forMargin]}>
             <View style={styles.iconsubParent}>
@@ -202,15 +203,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f2f2f2',
-    paddingTop: 12,
+    paddingLeft: 10,
     paddingRight: 5,
-    paddingLeft: 12,
   },
 
   parent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: 12,
   },
 
   Profile: {
@@ -273,7 +274,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   forMargin: {
-    marginTop: 20,
+    marginTop: 15,
   },
   teaBlock: {
     flexDirection: 'row',
@@ -326,5 +327,10 @@ const styles = StyleSheet.create({
   version: {
     textAlign: 'center',
     color: '#ff2746',
+  },
+  divider2:{
+    width:325,
+    borderWidth:0.3,
+    borderColor:'lightgray',
   },
 });

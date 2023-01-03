@@ -8,6 +8,7 @@ import {
   Switch,
   Image,
   ScrollView,
+  Dimensions
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -33,12 +34,12 @@ const AutoSchedule = () => {
   const [radioState, setRadioState] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-  const flashMessage = useRef();
-
-  const handleClick = () => {
-    setIsSelected(current => !current);
-  };
-
+  
+  const cols = 2;
+  const marginHorizontal = 5;
+  const width =
+    Dimensions.get('window').width / cols - marginHorizontal * (cols + 1);
+  
   const weekday = [
     'Sunday',
     'Monday',
@@ -81,6 +82,11 @@ const AutoSchedule = () => {
     navigation.navigate('homeScreen');
   };
 
+  const handleClick = () => {
+    setIsSelected(current => !current);
+  };
+
+
   const options = [
     {
       value: 0,
@@ -115,7 +121,7 @@ const AutoSchedule = () => {
           <Text style={styles.heading}>Auto Schedule</Text>
         </View>
       </View>
-      <ScrollView>
+      <ScrollView style={{marginTop: 5, paddingLeft: 9,}}>
         <View style={styles.parentWing}>
           <TouchableOpacity
             style={styles.afteradddBuilding}
@@ -418,6 +424,22 @@ const AutoSchedule = () => {
             <Text style={styles.timeText}>08:30 PM to 09:00 PM</Text>
           </TouchableOpacity>
         </View>
+         {/* <View style={styles.WingSelectParent}>
+          <TouchableOpacity onPress={() => navigation.navigate('addOfficeName')}>
+            <View style={[styles.WingSelect, {width: width}]}>
+              <Text style={styles.WingSelectText}>101</Text>
+            </View>
+          </TouchableOpacity>
+          <View style={[styles.WingSelect, {width: width}]}>
+            <Text style={styles.WingSelectText}>102</Text>
+          </View>
+          <View style={[styles.WingSelect, {width: width}]}>
+            <Text style={styles.WingSelectText}>103</Text>
+          </View>
+          <View style={[styles.WingSelect, {width: width}]}>
+            <Text style={styles.WingSelectText}>104</Text>
+          </View>
+        </View> */}
         <View
           style={{
             flex: 1,
@@ -499,14 +521,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 8,
+    paddingLeft: 10,
+    paddingRight: 5,
   },
   parent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: 12,
   },
 
   Profile: {
@@ -678,7 +700,8 @@ const styles = StyleSheet.create({
   setScheduleParent: {
     backgroundColor: '#f2f2f2',
     marginTop: 15,
-    borderRadius: 10,
+    borderRadius: 8,
+    marginRight:20,
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
@@ -767,4 +790,38 @@ const styles = StyleSheet.create({
     marginTop: -800,
     zIndex: 999,
   },
+  
+  WingSelect:{
+    // backgroundColor:'#f2f2f2',
+  // height:90,
+  // width:90,
+  // marginTop:20,
+  // borderRadius:5
+  padding: 5,
+  borderRadius: 8,
+  backgroundColor: '#f2f2f2',
+  height: 100,
+  textAlign: 'center',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginHorizontal: 4,
+  marginVertical: 4,
+  },
+  WingSelectParent:{
+    // flexDirection:'row',
+  // flexWrap:'wrap',
+  // justifyContent:'space-evenly',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  marginTop: 4,
+  borderWidth:1,
+  marginRight:20
+  },
+  WingSelectText:{
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 25,
+  }
 });

@@ -18,12 +18,15 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const route = useRoute();
   const [loading, setLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const onHomeScreen = () => {
     setLoading(true)
+    setDisable(true)
     setTimeout(() => {
       navigation.navigate('homeScreen');
       setLoading(false)
+      setDisable(false)
     }, 1000);
   };
 
@@ -53,9 +56,9 @@ const SignUp = () => {
       </View>
       <TouchableOpacity
         style={styles.SectionStyle}
-        disabled={name ? false : true}
+        disabled={name && !disable? false : true}
         onPress={() => onHomeScreen()}>
-        <View style={styles.otp}>
+        <View style={[styles.otp,{ backgroundColor: !disable ? '#ff2746' : '#f7656c',}]}>
           <Text style={styles.textStyle}>
             {loading == true ? (
               <ActivityIndicator size="small" color="#fff" />
@@ -118,7 +121,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderRadius: 30,
     paddingTop: 18,
-    backgroundColor: '#ff2746',
+    // backgroundColor: '#ff2746',
     elevation: 15,
     shadowColor: '#171717',
     width: 300,

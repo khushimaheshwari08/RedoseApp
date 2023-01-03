@@ -6,7 +6,10 @@ import LinearGradient from 'react-native-linear-gradient';
 const QRIcon = () => {
   const navigation = useNavigation();
   useEffect(() => {
-       Alert.alert("Please add credits to place the order");
+    setTimeout(() => {
+      Alert.alert("Please add credits to place the order");
+    }, 300);
+      
   }, [])
   return (
     <LinearGradient colors={['#ff2746',  '#000000']} style={styles.linearGradient}>

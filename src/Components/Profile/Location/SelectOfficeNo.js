@@ -1,10 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Icon from "react-native-vector-icons/MaterialIcons"
 
 const SelectOfficeNo = () => {
     const navigation = useNavigation();
+    const cols = 3;
+    const marginHorizontal = 5;
+    const width =
+      Dimensions.get('window').width / cols - marginHorizontal * (cols + 1);
   return (
     <View style={styles.container}>
         <View style={styles.parent}>
@@ -18,7 +22,7 @@ const SelectOfficeNo = () => {
         <View style={styles.parentWing}>
         <Text style={styles.WingHeading}>Binori - A</Text>
         <Text style={styles.WingSubHeading}>Friends Avenue, Bodakdev, Ahmedabad,Gujarat 380054</Text>
-        <View style={styles.WingSelectParent}>
+        {/* <View style={styles.WingSelectParent}>
         <TouchableOpacity onPress={()=> navigation.navigate('addOfficeName')}>
         <View style={styles.WingSelect}><Text style={[styles.WingSelectText,{marginTop:23}]}>101</Text></View>
         </TouchableOpacity>
@@ -28,6 +32,22 @@ const SelectOfficeNo = () => {
         <TouchableOpacity>
         <View style={styles.WingSelect}><Text style={[styles.WingSelectText,{marginTop:23}]}>103</Text></View>
         </TouchableOpacity>
+        </View> */}
+        <View style={styles.WingSelectParent}>
+          <TouchableOpacity onPress={() => navigation.navigate('addOfficeName')}>
+            <View style={[styles.WingSelect, {width: width}]}>
+              <Text style={styles.WingSelectText}>101</Text>
+            </View>
+          </TouchableOpacity>
+          <View style={[styles.WingSelect, {width: width}]}>
+            <Text style={styles.WingSelectText}>102</Text>
+          </View>
+          <View style={[styles.WingSelect, {width: width}]}>
+            <Text style={styles.WingSelectText}>103</Text>
+          </View>
+          <View style={[styles.WingSelect, {width: width}]}>
+            <Text style={styles.WingSelectText}>104</Text>
+          </View>
         </View>
         </View>
     </View>
@@ -63,7 +83,7 @@ const styles = StyleSheet.create({
       color:'#4a4949',
     },
     parentWing:{
-        margin:15
+      margin: 5,
     },
     WingHeading:{
         color:'black',
@@ -75,20 +95,34 @@ const styles = StyleSheet.create({
         fontSize:14,
     },
     WingSelect:{
-        backgroundColor:'#f2f2f2',
-        height:95,
-        width:95,
-        marginTop:20,
-        borderRadius:5
+      // backgroundColor:'#f2f2f2',
+    // height:90,
+    // width:90,
+    // marginTop:20,
+    // borderRadius:5
+    padding: 5,
+    borderRadius: 8,
+    backgroundColor: '#f2f2f2',
+    height: 100,
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 4,
+    marginVertical: 4,
     },
     WingSelectParent:{
-        flexDirection:'row',
-        justifyContent:'space-between',
+      // flexDirection:'row',
+    // flexWrap:'wrap',
+    // justifyContent:'space-evenly',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    marginTop: 4,
     },
     WingSelectText:{
-        color:'black',
-        fontWeight:'bold',
-        textAlign:'center',
-        fontSize:30,
+      color: 'black',
+      fontWeight: 'bold',
+      textAlign: 'center',
+      fontSize: 25,
     }
 })

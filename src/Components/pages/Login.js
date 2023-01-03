@@ -20,9 +20,11 @@ const Login = () => {
   const navigation = useNavigation();
   const [phoneNo, setPhoneNo] = useState('');
   const [loading, setLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
 
   const onOTPscreen = () => {
     setLoading(true);
+    setDisable(true)
     setTimeout(() => {
       navigation.navigate(
         'otp',
@@ -33,6 +35,7 @@ const Login = () => {
         }),
       );
       setLoading(false)
+      setDisable(false)
     }, 1000);
   
   };
@@ -69,6 +72,7 @@ const Login = () => {
                 backgroundColor: '#f2f2f2',
               },
             ]}
+            selectionColor={'#ff2746'}
             maxLength={10}
             placeholder="+91 0000000000"
             placeholderTextColor="gray"
@@ -80,21 +84,21 @@ const Login = () => {
           />
         </View>
       </View>
-      <TouchableOpacity
+       <TouchableOpacity
         style={styles.SectionStyle}
-        disabled={phoneNo.length === 10 ? false : true}
+        disabled={phoneNo.length === 10 && !disable ? false : true}
         onPress={() => onOTPscreen()}>
         <View
           style={[
             styles.otp,
             {
-              backgroundColor: phoneNo.length === 10 ? '#ff2746' : '#f7656c',
+              backgroundColor: phoneNo.length === 10 && !disable ? '#ff2746' : '#f7656c',
               elevation: phoneNo.length === 10 ? 15 : 0,
               shadowColor: '#171717',
             },
           ]}>
           <Text style={styles.textStyle}>
-            {loading == true ? (
+            {loading  ? (
               <ActivityIndicator size="small" color="#fff" />
             ) : (
               ' Get OTP'

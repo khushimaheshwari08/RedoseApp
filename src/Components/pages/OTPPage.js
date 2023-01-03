@@ -24,16 +24,17 @@ const OTPPage = () => {
   const secondInput = useRef();
   const thirdInput = useRef();
   const fourInput = useRef();
-  const [message, setMessage] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
   const [firstInputNum, setFirstInputNum] = useState();
   const [secondInputNum, setSecondInputNum] = useState();
   const [thirdInputNum, setThirdInputNum] = useState();
   const [fourInputNum, setfourInputNum] = useState();
+  const [time, setTime] = useState(59);
 
   const OtpData = () => {
-    let optNum = firstInputNum + secondInputNum + thirdInputNum + fourInputNum;
-    if (optNum.length !== 4) {
+    let otpNum = firstInputNum + secondInputNum + thirdInputNum + fourInputNum;
+    if (otpNum.length !== 4) {
       showMessage({
         message: 'Alert',
         description: 'Please enter otp',
@@ -42,9 +43,9 @@ const OTPPage = () => {
       return;
     }
     setLoading(true);
+    setDisable(true);
     setTimeout(() => {
-      setMessage(true);
-      navigation.replace('signUp');
+      navigation.navigate('signUp');
       // { phoneNo:route.params.phoneNo}
       showMessage({
         message: 'Success',
@@ -52,8 +53,27 @@ const OTPPage = () => {
         style: alertTypeStyle.success,
       });
       setLoading(false);
+      setDisable(false);
     }, 1000);
   };
+
+  const onResendAlert = () => {
+    setTime(59);
+    showMessage({
+      message: 'Success',
+      description: 'OTP sent successfully',
+      style: alertTypeStyle.success,
+    });
+  };
+
+  useEffect(() => {
+    if (time !== 0) {
+      setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+    }
+  }, [time]);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => navigation.goBack()} style={{width: 40}}>
@@ -68,18 +88,26 @@ const OTPPage = () => {
         123*****90
         {/* {route.params.phoneNo} */}
       </Text>
-      {message ? (
+      {/* {message ? (
         <View style={styles.dotParent}>
           <View style={styles.dot}></View>
           <View style={styles.dot}></View>
           <View style={styles.dot}></View>
           <View style={styles.dot}></View>
         </View>
-      ) : (
-        <View style={styles.inputParent}>
+      ) : ( */}
+      <View style={styles.inputParent}>
+        {firstInputNum ? (
+          <TouchableOpacity
+            onPress={() => setFirstInputNum('')}
+            style={styles.dotParent}>
+            <View style={styles.dot}></View>
+          </TouchableOpacity>
+        ) : (
           <TextInput
             style={styles.input}
             autoFocus={true}
+            selectionColor={'#ff2746'}
             onChangeText={text => {
               setFirstInputNum(text);
               text && secondInput.current.focus();
@@ -88,8 +116,18 @@ const OTPPage = () => {
             keyboardType="number-pad"
             maxLength={1}
           />
+        )}
+
+        {secondInputNum ? (
+          <TouchableOpacity
+            onPress={() => setSecondInputNum('')}
+            style={styles.dotParent}>
+            <View style={styles.dot}></View>
+          </TouchableOpacity>
+        ) : (
           <TextInput
             style={styles.input}
+            selectionColor={'#ff2746'}
             onChangeText={text => {
               setSecondInputNum(text);
               text ? thirdInput.current.focus() : firstInput.current.focus();
@@ -98,8 +136,18 @@ const OTPPage = () => {
             keyboardType="number-pad"
             maxLength={1}
           />
+        )}
+
+        {thirdInputNum ? (
+          <TouchableOpacity
+            onPress={() => setThirdInputNum('')}
+            style={styles.dotParent}>
+            <View style={styles.dot}></View>
+          </TouchableOpacity>
+        ) : (
           <TextInput
             style={styles.input}
+            selectionColor={'#ff2746'}
             onChangeText={text => {
               setThirdInputNum(text);
               text ? fourInput.current.focus() : secondInput.current.focus();
@@ -108,8 +156,18 @@ const OTPPage = () => {
             keyboardType="number-pad"
             maxLength={1}
           />
+        )}
+
+        {fourInputNum ? (
+          <TouchableOpacity
+            onPress={() => setfourInputNum('')}
+            style={styles.dotParent}>
+            <View style={styles.dot}></View>
+          </TouchableOpacity>
+        ) : (
           <TextInput
             style={styles.input}
+            selectionColor={'#ff2746'}
             onChangeText={text => {
               setfourInputNum(text);
               text ? fourInput.current.focus() : secondInput.current.focus();
@@ -119,12 +177,12 @@ const OTPPage = () => {
             keyboardType="number-pad"
             maxLength={1}
           />
-        </View>
-      )}
+        )}
+      </View>
+      {/* )} */}
 
-      <TouchableOpacity style={styles.SectionStyle} onPress={OtpData}>
-        {/* disabled={message ? true:false} */}
-        <View style={styles.otp}>
+      <TouchableOpacity style={styles.SectionStyle}  disabled={!disable ? false : true} onPress={OtpData}>
+        <View style={[styles.otp,{ backgroundColor: !disable ? '#ff2746' : '#f7656c',}]}>
           <Text style={styles.textStyle}>
             {loading == true ? (
               <ActivityIndicator size="small" color="#fff" />
@@ -141,8 +199,16 @@ const OTPPage = () => {
           marginTop: 30,
           alignItems: 'center',
         }}>
-        <Text style={[styles.resend]}>Resend otp in</Text>
-        <View style={styles.time}>
+        {time !== 0 ? (
+          <Text style={[styles.resend]}>
+            Resend OTP in <Text style={[styles.timestyle]}>00:{time}</Text>
+          </Text>
+        ) : (
+          <Text style={[styles.buttonText]} onPress={onResendAlert}>
+            Resend
+          </Text>
+        )}
+        {/* <View style={styles.time}>
           <RnOtpTimer
             minutes={0}
             seconds={59}
@@ -158,7 +224,7 @@ const OTPPage = () => {
               });
             }}
           />
-        </View>
+        </View> */}
       </View>
     </View>
   );
@@ -201,7 +267,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     fontWeight: 'bold',
     paddingTop: 18,
-    backgroundColor: '#ff2746',
+    // backgroundColor: '#ff2746',
     elevation: 15,
     shadowColor: '#171717',
     width: 300,
@@ -231,13 +297,10 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     height: 12,
     width: 12,
-    marginTop: 30,
+    marginTop: 40,
     marginBottom: 30,
   },
-  dotParent: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
+
   iconColor: {
     color: '#4a4949',
   },
@@ -251,6 +314,7 @@ const styles = StyleSheet.create({
   },
   resend: {
     color: 'gray',
+    fontSize: 16,
   },
   time: {
     marginLeft: 5,

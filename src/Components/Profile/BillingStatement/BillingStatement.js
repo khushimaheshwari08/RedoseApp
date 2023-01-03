@@ -32,7 +32,7 @@ const BillingStatement = () => {
                     </View>
                     <View >
                         <Text style={styles.subHead}>Free Credits</Text>
-                        <Text style={styles.subHeadDetail}>-</Text>
+                        <Text style={styles.subHeadDetail}>₹0</Text>
                     </View>
                     <View >
                         <Text style={styles.subHead}>Statement</Text>
@@ -45,7 +45,7 @@ const BillingStatement = () => {
                 <View style={styles.divider2}></View>
                 <View style={styles.invoice}>
                     <Text style={styles.invoiceText}>Invoice & Due Amount:</Text>
-                    <Text style={styles.invoiceTextclr}> - </Text>
+                    <Text style={styles.invoiceTextclr}> ₹0</Text>
                 </View>
                 </View>
               </View>
@@ -122,7 +122,8 @@ const styles = StyleSheet.create({
     borderRadius:10,
     backgroundColor: 'white',
     marginTop:15,
-    height:115
+    height:115,
+    marginRight:10,
   },
   activity:{
     flexDirection:'row',
@@ -138,9 +139,9 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   divider2:{
-    width:335,
+    width:325,
     borderWidth:0.3,
-    borderColor:'lightgray'
+    borderColor:'lightgray',
   },
 
   invoice:{
