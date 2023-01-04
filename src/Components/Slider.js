@@ -6,17 +6,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import Slides from '../data';
 import SlideItem from './SlideItem';
 import Pagination from './Pagination';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 
 const Slider = () => {
   const navigation = useNavigation();
   const [index, setIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      slidesRef.current.scrollToIndex({index:0})
+    }, []),
+  );
 
   const handleOnScroll = event => {
     Animated.event(

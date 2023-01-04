@@ -30,7 +30,7 @@ const OTPPage = () => {
   const [secondInputNum, setSecondInputNum] = useState();
   const [thirdInputNum, setThirdInputNum] = useState();
   const [fourInputNum, setfourInputNum] = useState();
-  const [time, setTime] = useState(59);
+  const [second, setSecond] = useState(59);
 
   const OtpData = () => {
     let otpNum = firstInputNum + secondInputNum + thirdInputNum + fourInputNum;
@@ -58,7 +58,7 @@ const OTPPage = () => {
   };
 
   const onResendAlert = () => {
-    setTime(59);
+    setSecond(59);
     showMessage({
       message: 'Success',
       description: 'OTP sent successfully',
@@ -67,12 +67,12 @@ const OTPPage = () => {
   };
 
   useEffect(() => {
-    if (time !== 0) {
+    if (second !== 0) {
       setTimeout(() => {
-        setTime(time - 1);
+        setSecond(second - 1);
       }, 1000);
     }
-  }, [time]);
+  }, [second]);
 
   return (
     <View style={styles.container}>
@@ -199,9 +199,9 @@ const OTPPage = () => {
           marginTop: 30,
           alignItems: 'center',
         }}>
-        {time !== 0 ? (
+        {second !== 0 ? (
           <Text style={[styles.resend]}>
-            Resend OTP in <Text style={[styles.timestyle]}>00:{time}</Text>
+            Resend OTP in <Text style={[styles.timestyle]}>00:{second < 10 ?  `0${second}` : second}</Text>
           </Text>
         ) : (
           <Text style={[styles.buttonText]} onPress={onResendAlert}>
@@ -290,15 +290,24 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     elevation: 5,
   },
+  dotParent:{
+    // borderWidth:1,
+    height: 60,
+    width: 60,
+    marginTop: 20,
+    justifyContent:'center',
+    alignItems:'center',
+    marginLeft: 12,
+  },
   dot: {
     backgroundColor: '#ff2746',
-    marginLeft: 30,
-    marginRight: 30,
+    // marginLeft: 30,
+    // marginRight: 30,
     borderRadius: 30,
     height: 12,
     width: 12,
-    marginTop: 40,
-    marginBottom: 30,
+    // marginTop: 40,
+    // marginBottom: 30,
   },
 
   iconColor: {

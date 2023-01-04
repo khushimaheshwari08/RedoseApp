@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   ScrollView,
@@ -14,9 +14,30 @@ import Icons from 'react-native-vector-icons/FontAwesome5';
 import BillingIcon from 'react-native-vector-icons/FontAwesome';
 import MyBuddiesIcon from 'react-native-vector-icons/Fontisto';
 
+const colors = [
+  // 'white',
+  // 'black',
+  'blue',
+  'green',
+  // 'pink',
+  'red',
+  'purple',
+  'yellow',
+  'brown'
+  // 'gray',
+  // 'lilac',
+];
+
 const ProfileScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setValue((v) => (v === 5 ? 0 : v + 1));
+    }, 2000);
+  }, []);
+
 
   return (
     <View style={styles.container}>
@@ -85,7 +106,7 @@ const ProfileScreen = () => {
             <Text style={styles.phnNo}>Free Credits Received so far</Text>
           </View>
         </View>
-        <View style={[styles.divider2,styles.forMargin]}></View>
+        <View style={[styles.divider2,styles.forMargin, { backgroundColor: colors[value] }]}></View>
         <TouchableOpacity onPress={() => navigation.navigate('manageLocation')}>
           <View style={[styles.iconParent, styles.forMargin]}>
             <View style={styles.iconsubParent}>
@@ -298,7 +319,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     padding: 7,
     paddingLeft: 10,
-    marginTop: 10,
+    marginTop: 8,
   },
   iconsubParent: {
     flexDirection: 'row',
@@ -330,7 +351,8 @@ const styles = StyleSheet.create({
   },
   divider2:{
     width:325,
-    borderWidth:0.3,
-    borderColor:'lightgray',
+    height:1.2,
+    // borderWidth:0.3,
+    backgroundColor:'lightgray',
   },
 });
