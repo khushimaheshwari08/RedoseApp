@@ -26,7 +26,7 @@ const HomeScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      if (animation.current !== null && animation.current !== undefined) {
+      if (animation.current !== null && animation.current !== undefined){
         animation.current.play(5, 82);
       }
     }, []),

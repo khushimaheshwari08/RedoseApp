@@ -9,6 +9,7 @@ import {
   Platform,
   UIManager,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Lottie from 'lottie-react-native';
@@ -87,12 +88,19 @@ const Help = () => {
 
   const navigation = useNavigation();
 
-  const open = (id) => {
+  const open = id => {
     // setExpanded(!expanded);
     // setArrowDown(!arrowDown);
-    setAccordionId([...accordionId ,id])
+    let temp = accordionId;
+    if (temp.includes(id)) {
+      const index = temp.indexOf(id);
+      temp.splice(index, 1);
+      setAccordionId(temp);
+    } else {
+      setAccordionId([...temp, id]);
+    }
   };
-  // console.log(accordionId)
+  console.log(accordionId);
   return (
     <View style={styles.container}>
       <View style={styles.parent}>
@@ -142,19 +150,19 @@ const Help = () => {
           containerItemStyle	={styles.con}
         />
       </View> */}
-      <ScrollView>
+      {/* <ScrollView>
         {data.map(value => (
           <View>
             <TouchableOpacity
-              onPress={(id) => open(value.id)}
+              onPress={() => open(value.id)}
               style={{
                 backgroundColor: '#f2f2f2',
                 height: 70,
                 // justifyContent: 'center',
                 borderWidth: 1,
                 borderColor: '#f2f2f2',
-               flexDirection:'row',
-               alignItems:'center'
+                flexDirection: 'row',
+                alignItems: 'center',
               }}>
               <Text
                 style={{
@@ -165,15 +173,22 @@ const Help = () => {
                 }}>
                 {value.title}
               </Text>
-              {arrowDown ? (
-              <Icon name="keyboard-arrow-up" size={30} style={[styles.iconColor,{marginLeft:60}]} />
+              {accordionId.includes(value.id) ? (
+                <Icon
+                  name="keyboard-arrow-up"
+                  size={30}
+                  style={[styles.iconColor, {marginLeft: 60}]}
+                />
               ) : (
-              <Icon name="keyboard-arrow-down" size={30} style={[styles.iconColor,{marginLeft:60}]} />
-              )
-              }
+                <Icon
+                  name="keyboard-arrow-down"
+                  size={30}
+                  style={[styles.iconColor, {marginLeft: 60}]}
+                />
+              )}
             </TouchableOpacity>
             <View style={styles.divider2}></View>
-            {expanded ? (
+            {accordionId.includes(value.id) ? (
               <Text
                 style={{
                   color: 'black',
@@ -187,7 +202,61 @@ const Help = () => {
             ) : null}
           </View>
         ))}
-      </ScrollView>
+      </ScrollView> */}
+      <FlatList
+        data={data}
+        renderItem= {({item}) => (
+          <View>
+            <TouchableOpacity
+              onPress={() => open(item.id)}
+              style={{
+                backgroundColor: '#f2f2f2',
+                height: 70,
+                // justifyContent: 'center',
+                borderWidth: 1,
+                borderColor: '#f2f2f2',
+                flexDirection: 'row',
+                alignItems: 'center',
+              }}>
+              <Text
+                style={{
+                  color: '#4a4949',
+                  fontWeight: 'bold',
+                  paddingLeft: 20,
+                  fontSize: 16,
+                }}>
+                {item.title}
+              </Text>
+              {accordionId.includes(item.id) ? (
+            <Icon
+              name="keyboard-arrow-up"
+              size={30}
+              style={[styles.iconColor, {marginLeft: 60}]}
+            />
+          ) : (
+              <Icon
+                name="keyboard-arrow-down"
+                size={30}
+                style={[styles.iconColor, {marginLeft: 60}]}
+              />
+             )} 
+            </TouchableOpacity>
+            <View style={styles.divider2}></View>
+            {accordionId.includes(item.id) ? (
+              <Text
+                style={{
+                  color: 'black',
+                  paddingLeft: 20,
+                  backgroundColor: '#ffffff',
+                  paddingTop: 2,
+                  paddingBottom: 2,
+                }}>
+                {item.body}
+              </Text>
+            ) : null}
+          </View>
+        )}
+      />
     </View>
   );
 };
@@ -244,10 +313,6 @@ const styles = StyleSheet.create({
     // paddingHorizontal: '3%',
     // height: '100%',
     // backgroundColor: '#e7e7e7',
-  },
-  con: {
-    backgroundColor: '#f2f2f2',
-    borderRadius: 0,
   },
 
   divider2: {
