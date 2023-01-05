@@ -25,6 +25,7 @@
     "lottie-react-native": "^5.1.4",
     "react": "18.1.0",
     "react-native": "0.70.6",
+    "react-native-accordion-list-view": "^2.0.0",
     "react-native-anchor-carousel": "^4.0.1",
     "react-native-camera-kit": "^13.0.0",
     "react-native-flash-message": "^0.3.1",

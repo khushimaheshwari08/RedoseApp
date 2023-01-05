@@ -6203,6 +6203,13 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-accordion-list-view@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/react-native-accordion-list-view/-/react-native-accordion-list-view-2.0.0.tgz"
+  integrity sha512-VKTxYPC4RJ6JAEPn+G8YIM2DATY7zCU4OJW8Zklhid3TVht/h9+FxUW+rPbVzeZ8SfpzoLKUeEF0lF6760Nhfw==
+  dependencies:
+    react-native-vector-icons "*"
+
 react-native-anchor-carousel@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmjs.org/react-native-anchor-carousel/-/react-native-anchor-carousel-4.0.1.tgz"
