@@ -1,5 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   ScrollView,
@@ -23,7 +23,7 @@ const colors = [
   'red',
   'purple',
   'yellow',
-  'brown'
+  'brown',
   // 'gray',
   // 'lilac',
 ];
@@ -34,10 +34,9 @@ const ProfileScreen = () => {
   const [value, setValue] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
-      setValue((v) => (v === 5 ? 0 : v + 1));
+      setValue(v => (v === 5 ? 0 : v + 1));
     }, 2000);
   }, []);
-
 
   return (
     <View style={styles.container}>
@@ -106,7 +105,12 @@ const ProfileScreen = () => {
             <Text style={styles.phnNo}>Free Credits Received so far</Text>
           </View>
         </View>
-        <View style={[styles.divider2,styles.forMargin, { backgroundColor: colors[value] }]}></View>
+        <View
+          style={[
+            styles.divider2,
+            styles.forMargin,
+            {backgroundColor: colors[value]},
+          ]}></View>
         <TouchableOpacity onPress={() => navigation.navigate('manageLocation')}>
           <View style={[styles.iconParent, styles.forMargin]}>
             <View style={styles.iconsubParent}>
@@ -349,10 +353,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ff2746',
   },
-  divider2:{
-    width:325,
-    height:1.2,
+  divider2: {
+    width: 325,
+    height: 1.2,
     // borderWidth:0.3,
-    backgroundColor:'lightgray',
+    backgroundColor: 'lightgray',
   },
 });

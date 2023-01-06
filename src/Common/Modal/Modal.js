@@ -53,6 +53,8 @@ const CommonModal = ({open, onClose, title, onYes, onNo, heading}) => {
   );
 };
 
+// https://programmingwithmosh.com/react-native/make-api-calls-in-react-native-using-fetch/
+
 export default CommonModal;
 const styles = StyleSheet.create({
   centeredView: {

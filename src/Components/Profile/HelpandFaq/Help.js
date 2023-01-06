@@ -91,7 +91,7 @@ const Help = () => {
   const open = id => {
     // setExpanded(!expanded);
     // setArrowDown(!arrowDown);
-    let temp = accordionId;
+    let temp = [...accordionId];
     if (temp.includes(id)) {
       const index = temp.indexOf(id);
       temp.splice(index, 1);
@@ -100,7 +100,7 @@ const Help = () => {
       setAccordionId([...temp, id]);
     }
   };
-  console.log(accordionId);
+  // console.log(accordionId);
   return (
     <View style={styles.container}>
       <View style={styles.parent}>
@@ -205,7 +205,7 @@ const Help = () => {
       </ScrollView> */}
       <FlatList
         data={data}
-        renderItem= {({item}) => (
+        renderItem={({item}) => (
           <View>
             <TouchableOpacity
               onPress={() => open(item.id)}
@@ -228,18 +228,18 @@ const Help = () => {
                 {item.title}
               </Text>
               {accordionId.includes(item.id) ? (
-            <Icon
-              name="keyboard-arrow-up"
-              size={30}
-              style={[styles.iconColor, {marginLeft: 60}]}
-            />
-          ) : (
-              <Icon
-                name="keyboard-arrow-down"
-                size={30}
-                style={[styles.iconColor, {marginLeft: 60}]}
-              />
-             )} 
+                <Icon
+                  name="keyboard-arrow-up"
+                  size={30}
+                  style={[styles.iconColor, {marginLeft: 60}]}
+                />
+              ) : (
+                <Icon
+                  name="keyboard-arrow-down"
+                  size={30}
+                  style={[styles.iconColor, {marginLeft: 60}]}
+                />
+              )}
             </TouchableOpacity>
             <View style={styles.divider2}></View>
             {accordionId.includes(item.id) ? (
