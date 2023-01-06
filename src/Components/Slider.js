@@ -10,7 +10,11 @@ import React, {useCallback, useRef, useState} from 'react';
 import Slides from '../data';
 import SlideItem from './SlideItem';
 import Pagination from './Pagination';
-import {useFocusEffect, useNavigation, useRoute} from '@react-navigation/native';
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
 const Slider = () => {
   const navigation = useNavigation();
@@ -21,7 +25,7 @@ const Slider = () => {
 
   useFocusEffect(
     useCallback(() => {
-      slidesRef.current.scrollToIndex({index:0})
+      slidesRef.current.scrollToIndex({index: 0});
     }, []),
   );
 

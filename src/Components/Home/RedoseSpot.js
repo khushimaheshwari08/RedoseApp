@@ -35,15 +35,15 @@ const RedoseSpot = () => {
         <View style={styles.container}>
           <View style={styles.findParent}>
             <View style={styles.findSubParent}>
-            <Text
-              style={{
-                color: 'white',
-                fontWeight: 'bold',
-                textAlign:'center',
-                fontSize:16
-              }}>
-              Find a code to scan
-            </Text>
+              <Text
+                style={{
+                  color: 'white',
+                  fontWeight: 'bold',
+                  textAlign: 'center',
+                  fontSize: 16,
+                }}>
+                Find a code to scan
+              </Text>
             </View>
           </View>
           <Lottie
@@ -84,7 +84,7 @@ export default RedoseSpot;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection:'row'
+    flexDirection: 'row',
   },
   titleText: {
     fontSize: 22,
@@ -116,16 +116,16 @@ const styles = StyleSheet.create({
     marginTop: -100,
   },
   findParent: {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  findSubParent:{
-    height:40,
-    width:170,
-    backgroundColor:'#121110',
-    borderRadius:7,
+  findSubParent: {
+    height: 40,
+    width: 170,
+    backgroundColor: '#121110',
+    borderRadius: 7,
     marginTop: -720,
-    justifyContent:'center'
-  }
+    justifyContent: 'center',
+  },
 });

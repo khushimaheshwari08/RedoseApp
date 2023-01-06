@@ -8,7 +8,7 @@ import {
   Switch,
   Image,
   ScrollView,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -34,12 +34,12 @@ const AutoSchedule = () => {
   const [radioState, setRadioState] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
-  
+
   const cols = 2;
   const marginHorizontal = 5;
   const width =
     Dimensions.get('window').width / cols - marginHorizontal * (cols + 1);
-  
+
   const weekday = [
     'Sunday',
     'Monday',
@@ -86,7 +86,6 @@ const AutoSchedule = () => {
     setIsSelected(current => !current);
   };
 
-
   const options = [
     {
       value: 0,
@@ -121,7 +120,7 @@ const AutoSchedule = () => {
           <Text style={styles.heading}>Auto Schedule</Text>
         </View>
       </View>
-      <ScrollView style={{marginTop: 5, paddingLeft: 9,}}>
+      <ScrollView style={{marginTop: 5, paddingLeft: 9}}>
         <View style={styles.parentWing}>
           <TouchableOpacity
             style={styles.afteradddBuilding}
@@ -316,13 +315,50 @@ const AutoSchedule = () => {
         />
 
         <View style={styles.timeMain}>
-          <TouchableOpacity style={[styles.timeParent,{backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},]} onPress={handleClick}>
-            <Icon name="access-time" size={30} style={[styles.searchIcon, {color: isSelected ? 'white' : '#ff2746'}]}/>
-            <Text style={[styles.timeText,{color: isSelected ? 'white' : 'black'}]}> 09:00 AM to 09:30 AM</Text>
+          <TouchableOpacity
+            style={[
+              styles.timeParent,
+              {backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},
+            ]}
+            onPress={handleClick}>
+            <Icon
+              name="access-time"
+              size={30}
+              style={[
+                styles.searchIcon,
+                {color: isSelected ? 'white' : '#ff2746'},
+              ]}
+            />
+            <Text
+              style={[
+                styles.timeText,
+                {color: isSelected ? 'white' : 'black'},
+              ]}>
+              09:00 AM to 09:30 AM
+            </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forml,,{backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},]} onPress={handleClick}>
-            <Icon name="access-time" size={30} style={[styles.searchIcon, {color: isSelected ? 'white' : '#ff2746'}]} />
-            <Text style={[styles.timeText,{color: isSelected ? 'white' : 'black'}]}>09:30 AM to 10:00 AM</Text>
+          <TouchableOpacity
+            style={[
+              styles.timeParent,
+              styles.forml,
+              {backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},
+            ]}
+            onPress={handleClick}>
+            <Icon
+              name="access-time"
+              size={30}
+              style={[
+                styles.searchIcon,
+                {color: isSelected ? 'white' : '#ff2746'},
+              ]}
+            />
+            <Text
+              style={[
+                styles.timeText,
+                {color: isSelected ? 'white' : 'black'},
+              ]}>
+              09:30 AM to 10:00 AM
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
             <Icon name="access-time" size={30} style={styles.searchIcon} />
@@ -424,7 +460,7 @@ const AutoSchedule = () => {
             <Text style={styles.timeText}>08:30 PM to 09:00 PM</Text>
           </TouchableOpacity>
         </View>
-         {/* <View style={styles.WingSelectParent}>
+        {/* <View style={styles.WingSelectParent}>
           <TouchableOpacity onPress={() => navigation.navigate('addOfficeName')}>
             <View style={[styles.WingSelect, {width: width}]}>
               <Text style={styles.WingSelectText}>101</Text>
@@ -701,7 +737,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     marginTop: 15,
     borderRadius: 8,
-    marginRight:20,
+    marginRight: 20,
     padding: 10,
     flexDirection: 'row',
     alignItems: 'center',
@@ -790,38 +826,38 @@ const styles = StyleSheet.create({
     marginTop: -800,
     zIndex: 999,
   },
-  
-  WingSelect:{
+
+  WingSelect: {
     // backgroundColor:'#f2f2f2',
-  // height:90,
-  // width:90,
-  // marginTop:20,
-  // borderRadius:5
-  padding: 5,
-  borderRadius: 8,
-  backgroundColor: '#f2f2f2',
-  height: 100,
-  textAlign: 'center',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginHorizontal: 4,
-  marginVertical: 4,
+    // height:90,
+    // width:90,
+    // marginTop:20,
+    // borderRadius:5
+    padding: 5,
+    borderRadius: 8,
+    backgroundColor: '#f2f2f2',
+    height: 100,
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 4,
+    marginVertical: 4,
   },
-  WingSelectParent:{
+  WingSelectParent: {
     // flexDirection:'row',
-  // flexWrap:'wrap',
-  // justifyContent:'space-evenly',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  alignItems: 'center',
-  marginTop: 4,
-  borderWidth:1,
-  marginRight:20
+    // flexWrap:'wrap',
+    // justifyContent:'space-evenly',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    marginTop: 4,
+    borderWidth: 1,
+    marginRight: 20,
   },
-  WingSelectText:{
+  WingSelectText: {
     color: 'black',
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 25,
-  }
+  },
 });

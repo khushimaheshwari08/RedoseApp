@@ -1,19 +1,15 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
 import Lottie from 'lottie-react-native';
 import {useNavigation} from '@react-navigation/native';
 
-
-
-
-
 const SplashScreen = () => {
-    const navigation = useNavigation();
-    useEffect(() => {
-        setTimeout(() => {
-            navigation.replace('slider')
-          }, 3000);
-    }, [])
+  const navigation = useNavigation();
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('slider');
+    }, 3000);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.parent}>

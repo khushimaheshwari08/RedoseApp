@@ -21,12 +21,12 @@ const SignUp = () => {
   const [disable, setDisable] = useState(false);
 
   const onHomeScreen = () => {
-    setLoading(true)
-    setDisable(true)
+    setLoading(true);
+    setDisable(true);
     setTimeout(() => {
       navigation.navigate('homeScreen');
-      setLoading(false)
-      setDisable(false)
+      setLoading(false);
+      setDisable(false);
     }, 1000);
   };
 
@@ -56,9 +56,13 @@ const SignUp = () => {
       </View>
       <TouchableOpacity
         style={styles.SectionStyle}
-        disabled={name && !disable? false : true}
+        disabled={name && !disable ? false : true}
         onPress={() => onHomeScreen()}>
-        <View style={[styles.otp,{ backgroundColor: !disable ? '#ff2746' : '#f7656c',}]}>
+        <View
+          style={[
+            styles.otp,
+            {backgroundColor: !disable ? '#ff2746' : '#f7656c'},
+          ]}>
           <Text style={styles.textStyle}>
             {loading == true ? (
               <ActivityIndicator size="small" color="#fff" />

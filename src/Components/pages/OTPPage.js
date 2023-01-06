@@ -181,8 +181,15 @@ const OTPPage = () => {
       </View>
       {/* )} */}
 
-      <TouchableOpacity style={styles.SectionStyle}  disabled={!disable ? false : true} onPress={OtpData}>
-        <View style={[styles.otp,{ backgroundColor: !disable ? '#ff2746' : '#f7656c',}]}>
+      <TouchableOpacity
+        style={styles.SectionStyle}
+        disabled={!disable ? false : true}
+        onPress={OtpData}>
+        <View
+          style={[
+            styles.otp,
+            {backgroundColor: !disable ? '#ff2746' : '#f7656c'},
+          ]}>
           <Text style={styles.textStyle}>
             {loading == true ? (
               <ActivityIndicator size="small" color="#fff" />
@@ -201,7 +208,10 @@ const OTPPage = () => {
         }}>
         {second !== 0 ? (
           <Text style={[styles.resend]}>
-            Resend OTP in <Text style={[styles.timestyle]}>00:{second < 10 ?  `0${second}` : second}</Text>
+            Resend OTP in{' '}
+            <Text style={[styles.timestyle]}>
+              00:{second < 10 ? `0${second}` : second}
+            </Text>
           </Text>
         ) : (
           <Text style={[styles.buttonText]} onPress={onResendAlert}>
@@ -290,13 +300,13 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     elevation: 5,
   },
-  dotParent:{
+  dotParent: {
     // borderWidth:1,
     height: 60,
     width: 60,
     marginTop: 20,
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginLeft: 12,
   },
   dot: {

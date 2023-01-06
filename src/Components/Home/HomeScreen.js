@@ -10,7 +10,7 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Vibration
+  Vibration,
 } from 'react-native';
 import UserAvatar from 'react-native-user-avatar';
 import MyOffice from './MyOffice';
@@ -26,7 +26,7 @@ const HomeScreen = () => {
 
   useFocusEffect(
     useCallback(() => {
-      if (animation.current !== null && animation.current !== undefined){
+      if (animation.current !== null && animation.current !== undefined) {
         animation.current.play(5, 82);
       }
     }, []),
@@ -74,7 +74,7 @@ const HomeScreen = () => {
           buttonColor={'#ff2746'}
           borderWidth={0}
           textStyle={{fontWeight: 'bold'}}
-          onPress={val => (setToggle(val))}
+          onPress={val => setToggle(val)}
           hasPadding
           options={[
             {label: 'My Office', value: 1},

@@ -36,9 +36,7 @@ const CommonModal = ({open, onClose, title, onYes, onNo, heading}) => {
           <Text style={styles.modalTextAlert}>{heading}</Text>
           <Text style={styles.modalText}>{title}</Text>
           <View style={styles.buttonParent}>
-            <TouchableOpacity
-              style={[styles.button,]}
-              onPress={onYes}>
+            <TouchableOpacity style={[styles.button]} onPress={onYes}>
               <Text style={styles.textStyle}>Yes</Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -68,8 +66,8 @@ const styles = StyleSheet.create({
     width: 320,
     borderRadius: 20,
     paddingRight: 20,
-    paddingLeft:20,
-    paddingBottom:20,
+    paddingLeft: 20,
+    paddingBottom: 20,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -83,18 +81,18 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   closeArrowParent: {
-    marginRight:-10,
+    marginRight: -10,
     height: 30,
     width: 30,
   },
   buttonParent: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom:10
+    marginBottom: 10,
   },
   button: {
     borderRadius: 20,
-    justifyContent:'center',
+    justifyContent: 'center',
     height: 35,
     width: 110,
     borderWidth: 1,
