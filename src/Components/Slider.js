@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import Slides from '../data';
 import SlideItem from './SlideItem';
 import Pagination from './Pagination';
@@ -20,14 +20,25 @@ const Slider = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const [index, setIndex] = useState(0);
+  const [isLogin, setIsLogin] = useState(false);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
 
   useFocusEffect(
     useCallback(() => {
-      slidesRef.current.scrollToIndex({index: 0});
-    }, []),
+      if (isLogin) {
+        slidesRef.current.scrollToIndex({index: 0});
+        setTimeout(() => {
+          setIsLogin(false)
+        }, 2000);
+      }
+    }, [isLogin]),
   );
+
+  useEffect(() => {
+    setIsLogin(route.params?.isLogin)
+  }, [route])
+  
 
   // console.log(route.params?.isLogin)
   const handleOnScroll = event => {

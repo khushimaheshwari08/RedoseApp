@@ -25,7 +25,7 @@ const MyAccount = () => {
   const onYesLogout = () => {
     navigation.navigate(
       'slider',
-      // {isLogin:true}
+      {isLogin:true}
     );
   };
 

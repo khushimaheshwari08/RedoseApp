@@ -38,7 +38,7 @@ const AutoSchedule = () => {
   const cols = 2;
   const marginHorizontal = 5;
   const width =
-    Dimensions.get('window').width / cols - marginHorizontal * (cols + 1);
+    Dimensions.get('window').width / cols - marginHorizontal * (cols + 3.5);
 
   const weekday = [
     'Sunday',
@@ -313,14 +313,9 @@ const AutoSchedule = () => {
           onYes={onYes}
           onNo={() => setModalTimeSlot(!modalTimeSlot)}
         />
-
-        <View style={styles.timeMain}>
-          <TouchableOpacity
-            style={[
-              styles.timeParent,
-              {backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},
-            ]}
-            onPress={handleClick}>
+        <View style={styles.TimeContainer}>
+        <TouchableOpacity onPress={handleClick}>
+          <View style={[styles.timeCard, {width: width},{backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'}]}>
             <Icon
               name="access-time"
               size={30}
@@ -331,19 +326,15 @@ const AutoSchedule = () => {
             />
             <Text
               style={[
-                styles.timeText,
+                styles.WingSelectText,
                 {color: isSelected ? 'white' : 'black'},
               ]}>
               09:00 AM to 09:30 AM
             </Text>
+            </View>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.timeParent,
-              styles.forml,
-              {backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'},
-            ]}
-            onPress={handleClick}>
+          <TouchableOpacity onPress={handleClick}>
+          <View style={[styles.timeCard, {width: width},{backgroundColor: isSelected ? '#ff2746' : '#f2f2f2'}]}>
             <Icon
               name="access-time"
               size={30}
@@ -354,128 +345,102 @@ const AutoSchedule = () => {
             />
             <Text
               style={[
-                styles.timeText,
+                styles.WingSelectText,
                 {color: isSelected ? 'white' : 'black'},
               ]}>
               09:30 AM to 10:00 AM
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>10:00 AM to 10:30 AM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>10:30 AM to 11:00 AM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>11:00 AM to 11:30 AM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>11:30 AM to 12:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>12:00 PM to 12:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>12:30 PM to 01:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>01:00 PM to 01:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>01:30 PM to 02:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>02:00 PM to 02:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>02:30 PM to 03:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>03:00 PM to 03:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>03:30 PM to 04:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>04:00 PM to 04:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>04:30 PM to 05:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>05:00 PM to 05:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>05:30 PM to 06:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>06:00 PM to 06:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>06:30 PM to 07:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>07:00 PM to 07:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>07:30 PM to 08:00 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={[styles.timeParent, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>08:00 PM to 08:30 PM</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.timeParent, styles.forml, styles.forMt]}>
-            <Icon name="access-time" size={30} style={styles.searchIcon} />
-            <Text style={styles.timeText}>08:30 PM to 09:00 PM</Text>
-          </TouchableOpacity>
-        </View>
-        {/* <View style={styles.WingSelectParent}>
-          <TouchableOpacity onPress={() => navigation.navigate('addOfficeName')}>
-            <View style={[styles.WingSelect, {width: width}]}>
-              <Text style={styles.WingSelectText}>101</Text>
             </View>
           </TouchableOpacity>
-          <View style={[styles.WingSelect, {width: width}]}>
-            <Text style={styles.WingSelectText}>102</Text>
-          </View>
-          <View style={[styles.WingSelect, {width: width}]}>
-            <Text style={styles.WingSelectText}>103</Text>
-          </View>
-          <View style={[styles.WingSelect, {width: width}]}>
-            <Text style={styles.WingSelectText}>104</Text>
-          </View>
-        </View> */}
+          <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>10:00 AM to 10:30 AM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>10:30 AM to 11:00 AM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>11:00 AM to 11:30 AM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>11:30 AM to 12:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>12:00 PM to 12:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>12:30 PM to 01:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>01:00 PM to 01:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>01:30 PM to 02:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>02:00 PM to 02:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>02:30 PM to 03:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>03:00 PM to 03:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>03:30 PM to 04:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>04:00 PM to 04:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>04:30 PM to 05:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>05:00 PM to 05:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>05:30 PM to 06:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>06:00 PM to 06:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>06:30 PM to 07:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>07:00 PM to 07:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>07:30 PM to 08:00 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>08:00 PM to 08:30 PM</Text>
+            </View>
+            <View style={[styles.timeCard, {width: width}]}>
+            <Icon name="access-time" size={30} style={styles.searchIcon} />
+            <Text style={styles.WingSelectText}>08:30 PM to 09:00 PM</Text>
+            </View>
+        </View>
         <View
           style={{
             flex: 1,
@@ -857,7 +822,33 @@ const styles = StyleSheet.create({
   WingSelectText: {
     color: 'black',
     fontWeight: 'bold',
+    fontSize: 12,
+    fontWeight: '700',
+    flex: 1,
+    flexWrap: 'wrap',
+    marginLeft: 7,
+  },
+  TimeContainer:{
+    flexDirection:'row',
+    flexWrap:'wrap',
+    marginTop: 4,
+    // alignItems:'center'
+  },
+  timeCard: {
+    // backgroundColor:'#f2f2f2',
+    // height:90,
+    // width:90,
+    // marginTop:20,
+    // borderRadius:5
+    padding: 5,
+    borderRadius: 5,
+    backgroundColor: '#f2f2f2',
+    height:50,
     textAlign: 'center',
-    fontSize: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 4,
+    marginVertical: 4,
+    flexDirection: 'row',
   },
 });
